@@ -1,0 +1,21 @@
+\begin{comment}
+http://mduona.blogspot.lt/
+http://www.admissionstestingservice.org/images/314864-test-of-mathematics-for-university-admission-specimen-paper-paper-2.pdf
+https://www.euclidea.xyz/
+\end{comment}
+
+\section{Šaltiniai}
+\begin{enumerate}
+\item \href{https://files.eric.ed.gov/fulltext/EJ841568.pdf}{Piaget vystymosi teorijos taikymas matematikos mokyme (\textit{angl.})}
+
+\item \href{http://digitalcommons.unl.edu/cgi/viewcontent.cgi?article=1013&context=adaptessays}{Sunkumai įstojus į aukštąją mokyklą (\textit{angl.})}
+
+\item \href{http://lib.dr.iastate.edu/cgi/viewcontent.cgi?article=7917&context=rtd}{Tolimesni detalūs tyrimai, skirti tirti perėjimą į formalias stadijas (\textit{angl.})}
+
+\item \href{https://www.upc.smm.lt/ugdymas/dokumentai/svarstomi/matemat/Matematinio_ugdymo_gaires.pdf}{Ugdymo gairės}
+
+\item \href{https://www.dropbox.com/s/vyghsx7k1ivd86g/David\%20G.\%20Myers\%20Psichologija\%202008.pdf?dl=0}{David G. Myers. Psichologija. 2008}
+
+\item \href{https://www.dropbox.com/s/w0m9haikka8trpq/tuxdoc.com_liping-ma-knowing-and-teaching-elementary-mathematics-teachers-understanding-of-fundamental-mathematics-in-china-and-the-united-states.pdf?dl=0}{Liping Ma. Knowing and teaching Elementary Mathematics}
+
+\item \href{http://norvaisa.lt}{Dėstytojo R. Norvaišos įrašai matematiką.}

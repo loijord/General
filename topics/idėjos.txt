@@ -1,0 +1,23 @@
+Praeitą pamoką nesileidom į nuodugnų plotų ir perimetrų skaičiavimą, bet iš karto pasukom prie klausimo, kur pasitaiko perimetras ir plotas buitinėje kalboje arba kur dažniausiai jų prireikia. 
+
+Viena iš vaizdingų situacijų galėtų pasitaikyti tokiame pasakojime:
+
+Juodųjų skylių mūsų galaktikoje (Žvaigždių spiečiuje, vadinamoje Paukščių taku) yra labai daug, labiausiai tikėtina, jog apie 100 milijonų. Tačiau jos užima tokį mažytį PLOTĄ dangaus skliaute, jog elektroniniai prietaisai sugebėjo užfiksuoti tik keletą. Reikia daugsyk pritraukti tam tikrą dangaus PLOTĄ su mikroskopu, jog pamatytume Juodąją skylę. Tiesa, jos pačios nėra matomos, nes jų branduolys sutraukia visą šviesą, tačiau galime stebėti, kad jų pakraštyje šviesa iš tolimesnių žvaigždių mus pasiekia ne taip, kaip turėtų. Kitaip tariant, Juodoji skylė yra tarsi juodas skritulio formos dangaus PLOTAS, slenkantis dangumi ir iškraipantis žvaigždžių šviesą savo pakraščiuose. Kaip jos judėjimas atrodo, kviečiu pasižiūrėti šį video:
+
+http://www.youtube.com/watch?v=j72GExsDnDU&t=7m19s
+
+Taip pat kalbėjome apie tai, kad kiekvienas paveikslėlis kompiuteryje saugomas kaip skaičiais užpildytas PLOTAS. Kiekvieną jame esantį kvadratėlį galima panariu sudauginti su kito kvadratėlio, vadinamo filtru, skaičiais. Net patys pabandėme pavyzdį (tą su skaičių seka), kaip galima atpažinti paveikslėlio kontūrus pagal pikselių ryškumą. Šiek tiek plačiau pateikta čia:
+
+https://en.wikipedia.org/wiki/Kernel_(image_processing)
+
+Man taip pat patiko iškelti per pamoką klausimą, kas yra gravitacinės bangos, tos, kurias pirmąsyk užfiksavo fizikai, kai įvyko labai retas dviejų juodųjų skylių susidūrimas. Norint atsakyti, kas yra gravitacinės bangos, prireikė paklausti klausimą ,,Kaip mes jaučiame garso bangas?". Gavome tokią išvadą: jei garso bangas jaučiame keletą kartų pasikeičiant garso stiprumui per sekundę, tai gravitacines bangas turėtume pajusti keletą kartų per sekundę pasikeičiant visų daiktų svoriui. Garso stiprumo keitimo pavyzdį paėmiau iš šio puslapio:
+
+http://onlinetonegenerator.com/binauralbeats.html
+
+Mano nuomone, internete turėtų būti įrankis, leidžiantis kurti garso bangų formas ir jas perklausyti, tačiau kol kas sunkoka tokį rasti. To garso, kur girdėjome per binaureal beats, garso bangos forma buvo tokia:
+
+https://www.wolframalpha.com/input/?i=sin(2*pi*500x)+%2B+sin(2*pi*503x)
+
+
+
+ 
