@@ -1,0 +1,48 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[L7x]{fontenc}
+\usepackage[lithuanian]{babel}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm, footskip=1cm, a4paper]{geometry}
+\usepackage{indentfirst}
+\usepackage{amsmath}
+\usepackage{animate}
+\usepackage{tikz}
+\usepackage{color}
+\usepackage{minted}
+
+\begin{document}
+Check step-by-step derivation of these expression to see how these expressions works:
+
+\begin{animateinline}[controls, poster = last, loop, begin={
+  \begin{tikzpicture}
+  \useasboundingbox (0,-0.5) rectangle (0.5\textwidth, 0.75);
+}, end={\end{tikzpicture}}]{1}
+$\sinh x = x + \frac {x^3} {3!} + \frac {x^5} {5!} + \frac {x^7} {7!} +\cdots $
+\newframe
+$2a\sinh x = 2ax + \frac {2ax^3} {3!} + \frac {2ax^5} {5!} + \frac {2ax^7} {7!} +\cdots =$
+\newframe
+$2a\sinh \left(\frac{x}{a}\right) = 2a\left(\frac{x}{a}\right) + \frac {2a\left(\frac{x}{a}\right)^3} {3!} + \frac {2a\left(\frac{x}{a}\right)^5} {5!} + \frac {2a\left(\frac{x}{a}\right)^7} {7!} +\cdots$
+\newframe
+$2a\sinh \left(\frac{x}{a}\right) = 2x + \frac{x^3}{3a^2} + \frac{x^5}{60a^4} +\cdots$
+\newframe
+$2a\sinh \left(\frac{S/2}{a}\right) = 2(S/2) + \frac{(S/2)^3}{3a^2} + \frac{(S/2)^5}{60a^4} +\cdots$
+\newframe
+$2a\sinh \left(\frac{S/2}{a}\right) = S+ \frac{S^3}{24a^2} +\cdots$
+\end{animateinline}
+\begin{animateinline}[controls, poster = last, loop, begin={
+  \begin{tikzpicture}
+  \useasboundingbox (0,-0.5) rectangle (0.5\textwidth, 0.75);
+}, end={\end{tikzpicture}}]{1}
+$\cosh x = 1 + \frac {x^2} {2!} + \frac {x^4} {4!} + \frac {x^6} {6!} + \cdots$
+\newframe
+$a\cosh x = a + \frac {ax^2} {2} + \frac {ax^4} {24} + \frac {ax^6} {720} + \cdots$
+\newframe
+$a\cosh \left(\frac{S/2}{a}\right)  = a + \frac {a\left(\frac{S/2}{a}\right) ^2} {2} + \frac {a\left(\frac{S/2}{a}\right) ^4} {24} + \frac {a\left(\frac{S/2}{a}\right) ^6} {720} + \cdots$
+\newframe
+$a\cosh \left(\frac{S/2}{a}\right)-a  = \frac{S^2}{8a} + \cdots$
+\end{animateinline}
+\\ \\
+\end{document}

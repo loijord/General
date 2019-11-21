@@ -1,0 +1,901 @@
+\documentclass[fleqn]{article}
+%%%<
+\usepackage{verbatim}
+\usepackage[utf8]{inputenc}
+\usepackage[L7x]{fontenc}
+\usepackage[lithuanian]{babel}
+\usepackage{lmodern, textcomp}
+\usepackage{framed}
+%\usepackage{main}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{ifthen}
+\usepackage{animate}
+\usepackage{empheq}
+\usepackage[many]{tcolorbox}
+\usepackage[customcolors,shade]{hf-tikz}
+\usepackage[top=2cm, bottom=2cm, footskip=1cm, a4paper]{geometry}
+
+\usepackage[inline, shortlabels]{enumitem} %this is for enumeration in the problem of Venn iliustrations
+
+%input systems$
+\newcommand{\cc}[2]{\begin{cases}#1 \\ #2\end{cases}}
+\newcommand{\ccc}[3]{\begin{cases}#1 \\ #2 \\ #3\end{cases}}
+\newcommand{\cccc}[4]{\begin{cases}#1 \\ #2 \\ #3 \\ #4\end{cases}}
+\newcommand{\ecc}[2]{\begin{sqcases}#1 \\ #2\end{sqcases}}
+\newcommand{\eccc}[3]{\begin{sqcases}#1 \\ #2 \\ #3\end{sqcases}}
+\newcommand{\ecccc}[4]{\begin{cases}#1 \\ #2 \\ #3 \\ #4 \end{cases}}
+\newcommand{\tbf}[1]{\textbf{#1}}
+\newcommand{\tit}[1]{\textit{#1}}
+\newcommand{\mbb}[1]{\mathbb{#1}}
+
+\newlength{\heightofprob}
+\newlength{\heightofsol}
+\newlength{\heightofhint}
+	
+\makeatletter
+\def\convertto#1#2{\strip@pt\dimexpr #2*65536/\number\dimexpr 1#1}
+\makeatother	
+
+
+%-------------------------------------------------------------------------------------------------------------------------------------
+\tcbset{highlight math style={enhanced,
+  colframe=red!60!black,colback=yellow!50!white,arc=4pt,boxrule=1pt}} %highlight of equations
+  
+\newcommand{\ma}[1]{\colorbox{blue!40!white}{#1}} %colourful text
+\newcommand{\mama}[2]{$\overbrace{\text{\colorbox{blue!40!white}{#1}}}^{#2}$} %colourful text with overbrace A in math mode
+\newcommand{\mamama}[3]{$\overbrace{\text{\colorbox{blue!40!white}{#1}}}^{#2\text{ ir }#3}$} %colourful text with two overbrace A and B in math mode
+
+\newcommand{\na}[1]{\colorbox{blue!40!white}{#1}} %colourful text
+\newcommand{\nana}[2]{$\overbrace{\text{\colorbox{blue!40!white}{#1}}}^{#2}$} %colourful text with overbrace A in math mode
+\newcommand{\nanana}[3]{$\overbrace{\text{\colorbox{blue!40!white}{#1}}}^{#2\text{ ir }#3}$} %colourful text with two overbrace A and B in math mode
+
+\begin{document}
+%DEFINITION OF WORD PROBLEM DIVIDED INTO SEVERAL ZONES (nextstep)
+\global\def\nextstep{ %
+\iflogvar\newframe%
+\else\global\logvartrue%
+\fi%
+\begin{tikzpicture}[scale=1.0]
+	\draw [use as bounding box] (0, 0) rectangle (\textwidth,\a);
+	\probzone;
+	\solzone;
+	\hintzone;
+\end{tikzpicture}}
+%DEFINE A COMMAND THAT CLEANS ZONES OF hint, problems and solutions and sets logvar(are there any frames in tikz?) to 0 (cleaning)
+\global\def\cleaning{%
+\newif\iflogvar\global\logvarfalse
+\global\def\hint{}%
+\global\def\prob{}%
+\global\def\sol{}%
+\global\def\probzone{\draw (0, \a) node[below right, text width=\textwidth] {\prob\\ \rule{\textwidth}{1pt}}}%
+\global\def\solzone{\draw (0, \b) node[below right, text width=\textwidth] {\sol}}%
+\global\def\hintzone{\draw (0, \c) node[below right, text width=\textwidth]{\hint}}%
+}
+%DEFINE A COMMAND THAT MEASURES height of problem text, solution text and hint text (getinfo)
+\global\def\getinfo{
+\settoheight{\heightofprob}{\hbox{\parbox{\textwidth}{\prob\\ \rule{\textwidth}{1pt}}}}
+\settoheight{\heightofsol}{\hbox{\parbox{\textwidth}{\sol}}}
+\settoheight{\heightofhint}{\hbox{\parbox{\textwidth}{\hint}}}
+\par
+\addtolength{\heightofsol}{\heightofhint}
+\addtolength{\heightofprob}{\heightofsol}
+space of problem =\convertto{pc}{\the\heightofprob}\par
+space of solution  = \convertto{pc}{\the\heightofsol}\par
+space of hint = \convertto{pc}{\the\heightofhint}
+}
+%----------------------------------------------------------------------------------------------------------------------------------------------
+\section{}
+\begin{animateinline}[controls,loop]{1}%
+\cleaning%
+\global\def\a{14.4}%
+\global\def\b{12.2}%
+\global\def\c{4.76}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\h{\colorbox{green!10!white}{Į kokius raktinius žodžius atkreipiame dėmesį?}}%
+\global\protected\def\hh{\\ \colorbox{green!20!white}{Kokius raidinius reiškinius naudojame?}}%
+\global\protected\def\hhh{\\ \colorbox{green!30!white}{Ką žymi įvesti dydžiai?}}%
+\global\protected\def\hhhh{\\ \colorbox{green!40!white}{Kokių kitų faktų yra nurodyta sąlygoje?}}%
+\global\protected\def\hhhhh{\\ \colorbox{green!50!white}{Kiekvienam faktui sudarykite jį atitinkančią lygtį.}}%
+\global\protected\def\hhhhhh{\\ \colorbox{green!60!white}{Išspręskite sudarytą lygtį}}%
+\global\protected\def\hhhhhhh{\\ \colorbox{green!70!white}{Pagal surastą spendinį gaukite atsakymą.}}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\p{Lukas turi trejomis mažiau 2 eurų monetų, nei 1 euro monetų. Iš viso jis turi 30 eurų. Kiek kurių monetų jis turi?}%
+\global\protected\def\pp{Lukas turi \colorbox{blue!40!white}{trejomis mažiau} 2 eurų monetų, nei 1 euro monetų. Iš viso jis turi 30 eurų. Kiek kurių monetų jis turi?}%
+\global\protected\def\ppp{Lukas turi $\overbrace{\text{\colorbox{blue!40!white}{trejomis mažiau}}}^{x\text{ ir }x-3}$ 2 eurų monetų, nei 1 euro monetų. Iš viso jis turi 30 eurų. Kiek kurių monetų jis turi?}%
+\global\protected\def\pppp{Lukas turi \colorbox{blue!40!white}{$\overbrace{\text{trejomis mažiau}}^{x\text{ ir }x-3}$} 2 eurų monetų, nei 1 euro monetų. \colorbox{blue!40!white}{Iš viso jis turi 30 eurų}. Kiek kurių monetų jis turi?}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\s{Tegu: $\cc{x\text{ yra Luko turimų vieno euro monetų skaičius}}{x-3\text{ yra Luko turimų dviejų eurų monetų skaičius}}$}%
+\global\protected\def\ss{\\ $\overbrace{2(x-3)}^{\text{suma 2€ monetomis}}+\overbrace{x}^{\text{suma 1€ monetomis}}=30$}%
+\global\protected\def\sss{\\ 
+\begin{minipage}{0.57\textwidth}
+	\begin{framed}
+	\begin{equation*}
+	\begin{split}
+	2(x-3)x &=30\Leftrightarrow\\
+	2x-6+x &=30\Leftrightarrow\\
+	3x-6&=30\Leftrightarrow\\
+	3x&=36\Leftrightarrow\\
+	x&=12
+	\end{split}
+	\end{equation*}
+	\end{framed}
+\end{minipage}}%
+\global\protected\def\ssss{\\ $\cc{\text{Lukas turi 12 monetų po 1 eurą}}{\text{Lukas turi 12-3=9 monetas po 2 eurus}}$}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\global\edef\prob{\p}\nextstep%
+\global\edef\hint{\h}\nextstep%
+\global\edef\prob{\pp}\nextstep%
+\global\edef\hint{\hint \hh}\nextstep% 
+\global\edef\prob{\ppp}\nextstep %
+\global\edef\hint{\hint \hhh}\nextstep% 
+\global\edef\sol{\s}\nextstep%
+\global\edef\hint{\hint \hhhh}\nextstep%
+\global\edef\prob{\pppp}\nextstep%
+\global\edef\hint{\hint \hhhhh}\nextstep%
+\global\edef\sol{\sol \ss}\nextstep%
+\global\edef\hint{\hint \hhhhhh}\nextstep%
+\global\edef\sol{\s \sss}\nextstep%
+\global\edef\hint{\hint \hhhhhhh}\nextstep%
+\global\edef\sol{\sol \ssss}\nextstep%
+\end{animateinline}\relax % BREAK
+\getinfo
+%----------------------------------------------------------------------------------------------------------------------------------------------
+\section{}
+\begin{animateinline}[controls,loop]{1}%
+\cleaning%
+\global\def\a{15.6}%
+\global\def\b{12.3}%
+\global\def\c{4.76}%
+%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\h{\colorbox{green!10!white}{Į kokius raktinius žodžius atkreipiame dėmesį?}}%
+\global\protected\def\hh{\\ \colorbox{green!20!white}{Tegu $x$ - saldainių kiekis. Kokie raidiniai reiškiniai atitiks likusių saldainių kiekius?}}%
+\global\protected\def\hhhh{\\ \colorbox{green!40!white}{Koks kitas faktas yra nurodytas sąlygoje?}}%
+\global\protected\def\hhhhh{\\ \colorbox{green!50!white}{Sudarykite šį faktą atitinkančią lygtį.}}%
+\global\protected\def\hhhhhh{\\ \colorbox{green!60!white}{Išspręskite sudarytą lygtį}}%
+\global\protected\def\hhhhhhh{\\ \colorbox{green!70!white}{Pagal surastą spendinį gaukite atsakymą.}}%
+%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\p{Mažylis ir Karlsonas aptiko vazą saldainių. Karlsonas paėmė pusę saldainių ir, minutėlę
+pagalvojęs, dar 2 saldainius. Mažylis tuomet paėmė pusę likusiųjų. Galų gale vazoje liko
+3 saldainiai. Kiek jų buvo iš pradžių?}%
+\global\protected\def\pp{Mažylis ir Karlsonas aptiko vazą saldainių. Karlsonas paėmė \colorbox{blue!40!white}{pusę saldainių} ir, minutėlę pagalvojęs, \colorbox{blue!40!white}{dar 2 saldainius}. Mažylis tuomet \colorbox{blue!40!white}{paėmė pusę likusiųjų}. Galų gale vazoje liko 3 saldainiai. Kiek jų buvo iš pradžių??}%
+\global\protected\def\ppp{Mažylis ir Karlsonas aptiko vazą saldainių. Karlsonas $\overbrace{\text{\colorbox{blue!40!white}{paėmė pusę saldainių}}}^{\text{liko }x/2}$ ir, minutėlę pagalvojęs, \colorbox{blue!40!white}{dar 2 saldainius}. Mažylis tuomet paėmė \colorbox{blue!40!white}{pusę likusiųjų}. Galų gale vazoje liko 3 saldainiai. Kiek jų buvo iš pradžių??}%
+\global\protected\def\pppp{Mažylis ir Karlsonas aptiko vazą saldainių. Karlsonas $\overbrace{\text{\colorbox{blue!40!white}{paėmė pusę saldainių}}}^{\text{liko }x/2}$ ir, minutėlę pagalvojęs, $\overbrace{\text{\colorbox{blue!40!white}{dar 2 saldainius}}}^{\text{liko }x/2-2}$. Mažylis tuomet \colorbox{blue!40!white}{paėmė pusę likusiųjų}. Galų gale vazoje liko 3 saldainiai. Kiek jų buvo iš pradžių??}%
+\global\protected\def\ppppp{Mažylis ir Karlsonas aptiko vazą saldainių. Karlsonas $\overbrace{\text{\colorbox{blue!40!white}{paėmė pusę saldainių}}}^{\text{liko }x/2}$ ir, minutėlę pagalvojęs, $\overbrace{\text{\colorbox{blue!40!white}{dar 2 saldainius}}}^{\text{liko }x/2-2}$. Mažylis tuomet $\overbrace{\text{\colorbox{blue!40!white}{paėmė pusę likusiųjų}}}^{\text{liko }\frac{x/2-2}{2}}$. Galų gale vazoje liko 3 saldainiai. Kiek jų buvo iš pradžių?}%
+\global\protected\def\pppppp{Mažylis ir Karlsonas aptiko vazą saldainių. Karlsonas $\overbrace{\text{\colorbox{blue!40!white}{paėmė pusę saldainių}}}^{\text{liko }x/2}$ ir, minutėlę pagalvojęs, $\overbrace{\text{\colorbox{blue!40!white}{dar 2 saldainius}}}^{\text{liko }x/2-2}$. Mažylis tuomet $\overbrace{\text{\colorbox{blue!40!white}{paėmė pusę likusiųjų}}}^{\text{liko }\frac{x/2-2}{2}}$. Galų gale vazoje liko \colorbox{blue!40!white}{3 saldainiai}. Kiek jų buvo iš pradžių?}%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\s{Tegu: $\cccc{x\text{ yra saldainių kiekis}}{x/2\text{ yra po pirmo paėmimo likęs saldainių kiekis}}{x/2-2\text{ yra po antro paėmimo likęs saldainių kiekis}}{\frac{x/2-2}{2}\text{ yra po trečio paėmimo likęs saldainių kiekis}}$}%
+\global\protected\def\ss{\\
+\begin{empheq}[box=\tcbhighmath]{align*}
+\frac{x/2-2}{2}&=3
+\end{empheq}}%
+\global\protected\def\sss{\\
+\begin{empheq}[box=\tcbhighmath]{align*}
+\Aboxed{\frac{x/2-2}{2}&=3} \Leftrightarrow\\
+\Aboxed{x/2-2&=6}\Leftrightarrow\\
+\Aboxed{x/2&=8}\Leftrightarrow\\
+\Aboxed{x&=16}
+\end{empheq}}%
+\global\protected\def\ssss{\\ Saldainių kiekis lygus \fbox{16}}%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\global\edef\prob{\p}\nextstep%
+\global\edef\hint{\h}\nextstep%
+\global\edef\prob{\pp}\nextstep%
+\global\edef\hint{\hint \hh}\nextstep% 
+\global\edef\prob{\ppp}\nextstep %
+\global\edef\prob{\pppp}\nextstep %
+\global\edef\prob{\ppppp}\nextstep %
+\global\edef\hint{\hint \hhh}\nextstep% 
+\global\edef\sol{\s}\nextstep%
+\global\edef\hint{\hint \hhhh}\nextstep%
+\global\edef\prob{\pppppp}\nextstep%
+\global\edef\hint{\hint \hhhhh}\nextstep%
+\global\edef\sol{\sol \ss}\nextstep%
+\global\edef\hint{\hint \hhhhhh}\nextstep%
+\global\edef\sol{\s \sss}\nextstep%
+\global\edef\hint{\hint \hhhhhhh}\nextstep%
+\global\edef\sol{\sol \ssss}\nextstep%
+\end{animateinline}\relax % BREAK
+\getinfo
+%----------------------------------------------------------------------------------------------------------------------------------------------
+\section{}
+\begin{animateinline}[controls,loop]{1}%
+\cleaning%
+\global\def\a{12.3}%
+\global\def\b{10.07}%
+\global\def\c{4.76}%
+%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\h{\colorbox{green!10!white}{Į kokius raktinius žodžius atkreipiame dėmesį?}}%
+\global\protected\def\hh{\\ \colorbox{green!20!white}{Kokius raidinius reiškinius naudojame?}}%
+\global\protected\def\hhh{\\ \colorbox{green!30!white}{Ką žymi šie reiškiniai?}}%
+\global\protected\def\hhhh{\\ \colorbox{green!40!white}{Koks kitas faktas yra nurodytas sąlygoje?}}%
+\global\protected\def\hhhhh{\\ \colorbox{green!50!white}{Sudarykite šį faktą atitinkančią lygtį.}}%
+\global\protected\def\hhhhhh{\\ \colorbox{green!60!white}{Išspręskite sudarytą lygtį}}%
+\global\protected\def\hhhhhhh{\\ \colorbox{green!70!white}{Pagal surastą spendinį gaukite atsakymą.}}%
+%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\p{Tortas sveria 900 g. Paulius padalijo jį į 4 dalis. Didžiausia dalis sveria tiek, kiek
+likusios 3 kartu. Koks didžiausios dalies svoris?}%
+\global\protected\def\pp{Tortas sveria 900 g. Paulius padalijo jį į 4 dalis. Didžiausia dalis sveria
+ \colorbox{blue!40!white}{tiek, kiek} likusios 3 kartu. Koks didžiausios dalies svoris?}%
+\global\protected\def\ppp{Tortas sveria 900 g. Paulius padalijo jį į 4 dalis. Didžiausia dalis sveria $\overbrace{\text{\colorbox{blue!40!white}{tiek, kiek}}}^{x\text{ ir }x}$ likusios 3 kartu. Koks didžiausios dalies svoris?}%
+\global\protected\def\pppp{\colorbox{blue!40!white}{Tortas sveria 900 g}. Paulius padalijo jį į 4 dalis. Didžiausia dalis sveria $\overbrace{\text{\colorbox{blue!40!white}{tiek, kiek}}}^{x\text{ ir }x}$ likusios 3 kartu. Koks didžiausios dalies svoris?}%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\s{Tegu: $\cc{x\text{ yra didžiausios dalies svoris}}{x\text{ taip pat yra likusių 3 dalių svoris}}$}%
+\global\protected\def\ss{\\ $\underbrace{\overbrace{x}^{\text{didžiausios dalies svoris}}+\overbrace{x}^{\text{likusių 3 dalių svoris}}}_{\text{visų dalių svoris}}=900$}%
+\global\protected\def\sss{\\ 
+\begin{empheq}[box=\tcbhighmath]{align*}
+\Aboxed{x + x &= 900} \Leftrightarrow\\
+\Aboxed{2x &= 900}\Leftrightarrow\\
+\Aboxed{x &= 450}
+\end{empheq}}%
+\global\protected\def\ssss{\\ Didžiausios dalies svoris yra \fbox{450 g.}}%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\global\edef\prob{\p}\nextstep%
+\global\edef\hint{\h}\nextstep%
+\global\edef\prob{\pp}\nextstep%
+\global\edef\hint{\hint \hh}\nextstep% 
+\global\edef\prob{\ppp}\nextstep %
+\global\edef\hint{\hint \hhh}\nextstep% 
+\global\edef\sol{\s}\nextstep%
+\global\edef\hint{\hint \hhhh}\nextstep%
+\global\edef\prob{\pppp}\nextstep%
+\global\edef\hint{\hint \hhhhh}\nextstep%
+\global\edef\sol{\sol \ss}\nextstep%
+\global\edef\hint{\hint \hhhhhh}\nextstep%
+\global\edef\sol{\s \sss}\nextstep%
+\global\edef\hint{\hint \hhhhhhh}\nextstep%
+\global\edef\sol{\sol \ssss}\nextstep%
+\end{animateinline}\relax % BREAK
+\getinfo
+%----------------------------------------------------------------------------------------------------------------------------------------------
+\section{}%4
+\begin{animateinline}[controls,loop]{1}%
+\cleaning%
+\global\def\a{13}%
+\global\def\b{10.87}%
+\global\def\c{4.76}%
+%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\h{\colorbox{green!10!white}{Į kokius raktinius žodžius atkreipiame dėmesį?}}%
+\global\protected\def\hh{\\ \colorbox{green!20!white}{Kokius raidinius reiškinius naudojame?}}%
+\global\protected\def\hhh{\\ \colorbox{green!30!white}{Ką žymi šie reiškiniai?}}%
+\global\protected\def\hhhh{\\ \colorbox{green!40!white}{Koks kitas faktas yra nurodytas sąlygoje?}}%
+\global\protected\def\hhhhh{\\ \colorbox{green!50!white}{Sudarykite šį faktą atitinkančią lygtį.}}%
+\global\protected\def\hhhhhh{\\ \colorbox{green!60!white}{Išspręskite sudarytą lygtį}}%
+\global\protected\def\hhhhhhh{\\ \colorbox{green!70!white}{Pagal surastą spendinį gaukite atsakymą.}}%
+%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\p{Melionas ir arbūzas kartu sveria 8 kg. Arbūzas yra 2 kg lengvesnis už melioną.
+Kiek sveria melionas?}%
+\global\protected\def\pp{Melionas ir arbūzas kartu sveria 8 kg. Arbūzas yra 
+ \ma{2 kg lengvesnis} už melioną. Kiek sveria melionas?}%
+\global\protected\def\ppp{Melionas ir arbūzas kartu sveria 8 kg. Arbūzas yra 
+ \mamama{2 kg lengvesnis}{x}{x+2} už melioną. Kiek sveria melionas?}%
+\global\protected\def\pppp{\ma{Melionas ir arbūzas kartu sveria 8 kg}. Arbūzas yra 
+ \mamama{2 kg lengvesnis}{x}{x+2} už melioną. Kiek sveria melionas?}%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\s{Tegu: $\cc{x\text{ yra arbūzo svoris}}{x+2\text{ yra meliono svoris}}$}%
+\global\protected\def\ss{\\ $\underbrace{\text{\mama{$x$}{\text{arbūzo svoris}}+\mama{$x+2$}{\text{meliono svoris}}}}_{\text{visų dalių svoris}}=8$}%
+\global\protected\def\sss{\\ 
+\begin{empheq}[box=\tcbhighmath]{align*}
+\Aboxed{x + x + 2 &= 8} \Leftrightarrow\\
+\Aboxed{2x + 2&= 8}\Leftrightarrow\\
+\Aboxed{2x &= 6}\Leftrightarrow\\
+\Aboxed{x &= 3}
+\end{empheq}}%
+\global\protected\def\ssss{\\ Meliono svoris yra 3+2=\fbox{5kg}}%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\global\edef\prob{\p}\nextstep%
+\global\edef\hint{\h}\nextstep%
+\global\edef\prob{\pp}\nextstep%
+\global\edef\hint{\hint \hh}\nextstep% 
+\global\edef\prob{\ppp}\nextstep %
+\global\edef\hint{\hint \hhh}\nextstep% 
+\global\edef\sol{\s}\nextstep%
+\global\edef\hint{\hint \hhhh}\nextstep%
+\global\edef\prob{\pppp}\nextstep%
+\global\edef\hint{\hint \hhhhh}\nextstep%
+\global\edef\sol{\sol \ss}\nextstep%
+\global\edef\hint{\hint \hhhhhh}\nextstep%
+\global\edef\sol{\s \sss}\nextstep%
+\global\edef\hint{\hint \hhhhhhh}\nextstep%
+\global\edef\sol{\sol \ssss}\nextstep%
+\end{animateinline}\relax % BREAK
+\getinfo
+%----------------------------------------------------------------------------------------------------------------------------------------------
+\section{}%5
+\begin{animateinline}[controls,loop]{1}%
+\cleaning%
+\global\def\a{16.5}%
+\global\def\b{15.1}%
+\global\def\c{7.5}%
+%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\h{\colorbox{green!8!white}{Į ką atkreipiame dėmesį?}}%
+\global\protected\def\hh{\\ \colorbox{green!16!white}{Kokius raktinius žodžius matome?}}%
+\global\protected\def\hhh{\\ \colorbox{green!24!white}{Kokią informaciją iš jų sužinome?}}%
+\global\protected\def\hhhh{\\ \colorbox{green!31!white}{Į ką dar atkreipiame dėmesį?}}%
+\global\protected\def\hhhhh{\\ \colorbox{green!39!white}{Kokius raktinius žodžius matome?}}%
+\global\protected\def\hhhhhh{\\ \colorbox{green!47!white}{Kokią informaciją iš jų sužinome?}}%
+\global\protected\def\hhhhhhh{\\ \colorbox{green!55!white}{Į ką dar atkreipiame dėmesį?}}%
+\global\protected\def\hhhhhhhh{\\ \colorbox{green!62!white}{Kokius raktinius žodžius matome?}}%
+\global\protected\def\hhhhhhhhh{\\ \colorbox{green!70!white}{Kokius raidinius reiškinius panaudosime?}}%
+\global\protected\def\hhhhhhhhhh{\\ \colorbox{green!78!white}{Koks paskutinis faktas yra nurodytas sąlygoje?}}%
+\global\protected\def\hhhhhhhhhhh{\\ \colorbox{green!85!white}{Sudarykite šį faktą atitinkančią lygtį.}}%
+\global\protected\def\hhhhhhhhhhhh{\\ \colorbox{green!93!white}{Išspręskite sudarytą lygtį}}%
+\global\protected\def\hhhhhhhhhhhhh{\\ \colorbox{green!100!white}{Pagal surastą spendinį gaukite atsakymą.}}%
+%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\p{Kambarinio augalo kiekviena šakelė turi arba penkis lapelius, arba du lapelius ir
+vieną žiedą. Iš viso augalas turi 6 žiedus ir 32 lapelius. Kiek šakelių turi augalas?}%
+\global\protected\def\pp{Kambarinio augalo kiekviena šakelė turi arba penkis lapelius, arba du lapelius ir
+vieną žiedą. Iš viso augalas turi 6 žiedus ir \ma{32 lapelius}. Kiek šakelių turi augalas?}%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\s{Augalo žiedų yra tiek, kiek šakelių su dviem lapeliais, nes kitos šakelės žiedų neturi. }%
+\global\protected\def\ss{Augalo \ma{žiedų} yra \ma{tiek, kiek} \ma{šakelių} su dviem lapeliais, nes kitos šakelės žiedų neturi. }%
+\global\protected\def\sss{Augalo \mama{žiedų}{6} yra \ma{tiek, kiek} \mama{šakelių}{6} su dviem lapeliais, nes kitos šakelės žiedų neturi. }%
+\global\protected\def\ssss{Šakelėse, kurios turi žiedų, yra dvigubai daugiau lapų už jų \mama{kiekį}{6}}%
+\global\protected\def\sssss{Šakelėse, kurios turi žiedų, yra \ma{dvigubai daugiau lapų} už jų \mama{kiekį.}{6}}%
+\global\protected\def\ssssss{Šakelėse, kurios turi žiedų, yra \mama{dvigubai daugiau lapų}{6\cdot 2=12} už jų \mama{kiekį.}{6}}%
+\global\protected\def\sssssss{Šakelėse, kurios neturi žiedų, yra penkis kartus daugiau lapų už jų kiekį.}%
+\global\protected\def\ssssssss{Šakelėse, kurios neturi žiedų, yra \ma{penkis kartus} daugiau lapų už jų kiekį.}%
+\global\protected\def\sssssssss{Šakelėse, kurios neturi žiedų, yra \mamama{penkis kartus}{x}{5x} daugiau lapų už šakelių kiekį.}%
+\global\protected\def\S{$\cc{\text{\ssssss}}{\text{\sssssssss}}$\\}
+\global\protected\def\SS{$\underbrace{\overbrace{5x}^{\text{lapų skaičius ant šakelių be žiedų}}+\overbrace{12}^{\text{lapų skaičius ant šakelių su žiedais}}}_{\text{visų šakelių skaičius}}=32$}
+\global\protected\def\SSS{
+\begin{empheq}[box=\tcbhighmath]{align*}
+\Aboxed{5x + 12 &= 32} \Leftrightarrow\\
+\Aboxed{5x&= 20}\Leftrightarrow\\
+\Aboxed{x &= 4}
+\end{empheq}}
+\global\protected\def\SSSS{Iš viso šakelių yra 6 + 4 = \fbox{10}}
+%%%%%%%%%%%%%%%%%%%%%%%%
+\global\edef\prob{\p}\nextstep%
+\global\edef\hint{\h}\nextstep%
+\global\edef\sol{\s}\nextstep%
+\global\edef\hint{\hint \hh}\nextstep% 
+\global\edef\sol{\ss}\nextstep %
+\global\edef\hint{\hint \hhh}\nextstep% 
+\global\edef\sol{\sss}\nextstep%
+\global\edef\hint{\hint \hhhh}\nextstep%
+\global\edef\sol{\sss \par \ssss}\nextstep%
+\global\edef\hint{\hint \hhhhh}\nextstep%
+\global\edef\sol{\sss \par \sssss}\nextstep%
+\global\edef\hint{\hint \hhhhhh}\nextstep%
+\global\edef\sol{\sss \par \ssssss}\nextstep%
+\global\edef\hint{\hint \hhhhhhh}\nextstep%
+\global\edef\sol{\sss \par \ssssss \par \sssssss}\nextstep%
+\global\edef\hint{\hint \hhhhhhhh}\nextstep%
+\global\edef\sol{\sss \par \ssssss \par \ssssssss}\nextstep%
+\global\edef\hint{\hint \hhhhhhhhh}\nextstep%
+\global\edef\sol{\sss \par \ssssss \par \sssssssss}\nextstep%
+\global\edef\sol{\sss\par \S}\nextstep%
+\global\edef\hint{\hint \hhhhhhhhhh}\nextstep%
+\global\edef\prob{\pp}\nextstep%
+\global\edef\hint{\hint \hhhhhhhhhhh}\nextstep%
+\global\edef\sol{\sss \par \ssssss \par \sssssssss \par \SS}\nextstep%
+\global\edef\hint{\hint \hhhhhhhhhhhh}\nextstep%
+\global\edef\sol{\sss \par \ssssss \par \sssssssss \par \SSS}\nextstep%
+\global\edef\hint{\hint \hhhhhhhhhhhhh}\nextstep%
+\global\edef\sol{\sol \par \SSSS}\nextstep%
+\end{animateinline}\relax % BREAK
+\getinfo%
+\section{}%6
+%----------------------------------------------------------------------------------------------------------------------------------------------
+\begin{animateinline}[controls,loop]{1}%
+\cleaning%
+\global\def\a{12.8}%
+\global\def\b{10.6}%
+\global\def\c{4.76}%
+%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\h{\colorbox{green!10!white}{Į kokius raktinius žodžius atkreipiame dėmesį?}}%
+\global\protected\def\hh{\\ \colorbox{green!20!white}{Kokius raidinius reiškinius naudojame?}}%
+\global\protected\def\hhh{\\ \colorbox{green!30!white}{Ką žymi šie reiškiniai?}}%
+\global\protected\def\hhhh{\\ \colorbox{green!40!white}{Koks kitas faktas yra nurodytas sąlygoje?}}%
+\global\protected\def\hhhhh{\\ \colorbox{green!50!white}{Sudarykite šį faktą atitinkančią lygtį.}}%
+\global\protected\def\hhhhhh{\\ \colorbox{green!60!white}{Išspręskite sudarytą lygtį}}%
+\global\protected\def\hhhhhhh{\\ \colorbox{green!70!white}{Pagal surastą spendinį gaukite atsakymą.}}%
+%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\p{Vienas skaičius didesnis už kitą skaičių 7 kartus. Šių skaičių suma lygi 88. Kam
+lygus kiekvienas iš šių skaičių?}%
+\global\protected\def\pp{Vienas skaičius didesnis už kitą skaičių \ma{7 kartus}. Šių skaičių suma lygi 88. Kam
+lygus kiekvienas iš šių skaičių?}%
+\global\protected\def\ppp{Vienas skaičius didesnis už kitą skaičių \mamama{7 kartus}{x}{7x}. Šių skaičių suma lygi 88. Kam
+lygus kiekvienas iš šių skaičių?}%
+\global\protected\def\pppp{Vienas skaičius didesnis už kitą skaičių \mamama{7 kartus}{x}{7x}. Šių skaičių \ma{suma lygi 88}. Kam
+lygus kiekvienas iš šių skaičių?}%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\s{Tegu: $\cc{x\text{ yra pirmas skaičius}}{7x\text{ yra antras skaičius}}$}%
+\global\protected\def\ss{\\ $\underbrace{\text{\mama{$x$}{\text{pirmas skaičius}}+\mama{$7x$}{\text{antras skaičius}}}}_{\text{skaičių suma}}=8$}%
+\global\protected\def\sss{\\ 
+\begin{empheq}[box=\tcbhighmath]{align*}
+\Aboxed{x + 7x &= 88} \Leftrightarrow\\
+\Aboxed{8x&= 88}\Leftrightarrow\\
+\Aboxed{x &= 11}\Leftrightarrow
+\end{empheq}}%
+\global\protected\def\ssss{Tegu: $\cc{\text{pirmas skaičius yra \fbox{11}}}{\text{antras skaičius yra $11\cdot 7$ = \fbox{77}}}$}%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\global\edef\prob{\p}\nextstep%
+\global\edef\hint{\h}\nextstep%
+\global\edef\prob{\pp}\nextstep%
+\global\edef\hint{\hint \hh}\nextstep% 
+\global\edef\prob{\ppp}\nextstep %
+\global\edef\hint{\hint \hhh}\nextstep% 
+\global\edef\sol{\s}\nextstep%
+\global\edef\hint{\hint \hhhh}\nextstep%
+\global\edef\prob{\pppp}\nextstep%
+\global\edef\hint{\hint \hhhhh}\nextstep%
+\global\edef\sol{\s \ss}\nextstep%
+\global\edef\hint{\hint \hhhhhh}\nextstep%
+\global\edef\sol{\s \sss}\nextstep%
+\global\edef\hint{\hint \hhhhhhh}\nextstep%
+\global\edef\sol{\sol \ssss}\nextstep%
+\end{animateinline}\relax % BREAK
+\getinfo
+%----------------------------------------------------------------------------------------------------------------------------------------------
+\section{}%7
+\begin{animateinline}[controls,loop]{1}%
+\cleaning%
+\global\def\a{14.5}%
+\global\def\b{9.6}%
+\global\def\c{4}%
+%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\h{\colorbox{green!10!white}{Į kokius raktinius žodžius atkreipiame dėmesį?}}%
+\global\protected\def\hh{\\ \colorbox{green!20!white}{Teiginius, kuriuose yra šie žodžiai, užrašykite lygybėmis}}%
+\global\protected\def\hhh{\\ \colorbox{green!30!white}{Lygybes perrašykite taip, kad matytųsi, kiek sveria Jonė ir Lina lyginant su Katre}}%
+\global\protected\def\hhhh{\\ \colorbox{green!40!white}{Kokių kitų faktų duota sąlygoje?}}%
+\global\protected\def\hhhhh{\\ \colorbox{green!50!white}{Įrašykite ėjimo tvarkoje Jorės ir Linos svorių reikšmes}}%
+\global\protected\def\hhhhhh{\\ \colorbox{green!60!white}{Ką vaizduoja gauti dydžiai?}}%
+%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\p{Jonė, Katrė ir Lina išėjo pasivaikščioti. Jonė eina pirma, Katrė eina viduryje, o Lina eina paskutinė. Jonė sveria 500 kg daugiau negu Katrė, Katrė sveria 1000 kg mažiau, negu Lina. Kuris iš žemiau pateiktų paveikslėlių vaizduoja Jonę, Katrę ir Liną teisinga tvarka?\\ \includegraphics[width=\textwidth]{"begemotai".png}}%
+\global\protected\def\pp{Jonė, Katrė ir Lina išėjo pasivaikščioti. Jonė eina pirma, Katrė eina viduryje, o Lina eina paskutinė. Jonė sveria \ma{500 kg daugiau negu Katrė}, Katrė sveria \ma{1000 kg mažiau}, negu Lina. Kuris iš žemiau pateiktų paveikslėlių vaizduoja Jonę, Katrę ir Liną teisinga tvarka?\\ \includegraphics[width=\textwidth]{"begemotai".png}}%
+\global\protected\def\ppp{Jonė, Katrė ir Lina išėjo pasivaikščioti. \ma{Jonė eina pirma, Katrė eina viduryje, o Lina eina paskutinė}. Jonė sveria \ma{500 kg daugiau negu Katrė}, Katrė sveria \ma{1000 kg mažiau}, negu Lina. Kuris iš žemiau pateiktų paveikslėlių vaizduoja Jonę, Katrę ir Liną teisinga tvarka?\\ \includegraphics[width=\textwidth]{"begemotai".png}}%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\s{$\cc{\text{Katrė}+500=\text{Jonė}}{\text{}}$}%
+\global\protected\def\sS{$\cc{\text{Katrė}+500=\text{Jonė}}{\text{Katrė}=\text{Lina}-1000}$}%
+\global\protected\def\ss{$\Leftrightarrow \cc{\text{Jonė}=\text{Katrė}+500}{\text{}}$}%
+\global\protected\def\ssS{$\Leftrightarrow \cc{\text{Jonė}=\text{Katrė}+500}{\text{Lina}=\text{Katrė}+1000}$}%
+\global\protected\def\sss{\\ Ėjimo tvarka: \fbox{Jonė} \fbox{Katrė} \fbox{Lina}}%
+\global\protected\def\ssss{\\ Ėjimo tvarka: \fbox{Katrė+500} \fbox{Katrė} \fbox{Katrė+1000}}%
+\global\protected\def\sssss{\\ Ėjimo tvarka: \includegraphics[width=0.16\textwidth]{"bege".png} \includegraphics[width=0.1\textwidth]{"bege".png} \includegraphics[width=0.2\textwidth]{"bege".png}}%
+\global\protected\def\ssssss{\\ Atsakymas \fbox{A)}}%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\global\edef\prob{\p}\nextstep%
+\global\edef\hint{\h}\nextstep%
+\global\edef\prob{\pp}\nextstep%
+\global\edef\hint{\hint \hh}\nextstep% 
+\global\edef\sol{\s}\nextstep %
+\global\edef\sol{\sS}\nextstep %
+\global\edef\hint{\hint \hhh}\nextstep% 
+\global\edef\sol{\sS \ss}\nextstep%
+\global\edef\sol{\sS \ssS}\nextstep%
+\global\edef\hint{\hint \hhhh}\nextstep%
+\global\edef\prob{\ppp}\nextstep%
+\global\edef\sol{\sol \sss}\nextstep%
+\global\edef\hint{\hint \hhhhh}\nextstep%
+\global\edef\sol{\sol \ssss}\nextstep%
+\global\edef\hint{\hint \hhhhhh}\nextstep%
+\global\edef\sol{\sol \sssss}\nextstep%
+\global\edef\sol{\sol \ssssss}\nextstep%%
+\end{animateinline}\relax % BREAK
+\getinfo
+%----------------------------------------------------------------------------------------------------------------------------------------------
+\section{pirmas bandymas}%8b
+\begin{animateinline}[controls,loop]{1}%
+\cleaning%
+\global\def\a{13.3}%
+\global\def\b{9.0}%
+\global\def\c{4.1}%
+%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\h{\colorbox{green!10!white}{Į kokius raktinius žodžius atkreipiame dėmesį?}}%
+\global\protected\def\hh{\\ \colorbox{green!20!white}{Kokius raidinius reiškinius naudojame?}}%
+\global\protected\def\hhh{\\ \colorbox{green!30!white}{Ką žymi šie reiškiniai?}}%
+\global\protected\def\hhhh{\\ \colorbox{green!40!white}{Į kokius dar raktinius žodžius atkreipiame dėmesį?}}%
+\global\protected\def\hhhhh{\\ \colorbox{green!50!white}{Kokius raidinius reiškinius naudojame?}}%
+\global\protected\def\hhhhhh{\\ \colorbox{green!60!white}{Ką žymi šie reiškiniai?}}%
+\global\protected\def\hhhhhhh{\\ \colorbox{red!70!white}{Raskite sprendime klaidą.}}%
+%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\p{Petras atidarė blyninę. Jo draugas Jurgis davė Petrui keletą kvadratinių
+stalų ir kėdžių. Jei Petras prie kiekvieno stalo pastatytų po 4 kėdes, jam trūktų 6 kėdžių. Jei jis visus stalus sustumtų po du ir prie kiekvieno dvigubo stalo pastatytų po 6 kėdes, jam liktų 4 kėdės. Kiek stalų Petras gavo iš Jurgio?}%
+\global\protected\def\pp{Petras atidarė blyninę. Jo draugas Jurgis davė Petrui keletą kvadratinių
+stalų ir kėdžių. Jei Petras prie kiekvieno stalo pastatytų po 4 kėdes, jam \ma{trūktų 6 kėdžių}. Jei jis visus stalus sustumtų po du ir prie kiekvieno dvigubo stalo pastatytų po 6 kėdes, jam liktų 4 kėdės. Kiek stalų Petras gavo iš Jurgio?}%
+\global\protected\def\ppp{Petras atidarė blyninę. Jo draugas Jurgis davė Petrui keletą kvadratinių stalų ir kėdžių. Jei Petras prie kiekvieno stalo pastatytų po 4 kėdes, jam \mamama{trūktų 6 kėdžių}{x}{x-6}. Jei jis visus stalus sustumtų po du ir prie kiekvieno dvigubo stalo pastatytų po 6 kėdes, jam liktų 4 kėdės. Kiek stalų Petras gavo iš Jurgio?}%
+\global\protected\def\pppp{Petras atidarė blyninę. Jo draugas Jurgis davė Petrui keletą kvadratinių stalų ir kėdžių. Jei Petras prie kiekvieno stalo pastatytų po 4 kėdes, jam \mamama{trūktų 6 kėdžių}{x}{x-6}. Jei jis visus stalus sustumtų po du ir prie kiekvieno dvigubo stalo pastatytų po 6 kėdes, jam \ma{liktų 4 kėdės}. Kiek stalų Petras gavo iš Jurgio?}%
+\global\protected\def\ppppp{Petras atidarė blyninę. Jo draugas Jurgis davė Petrui keletą kvadratinių stalų ir kėdžių. Jei Petras prie kiekvieno stalo pastatytų po 4 kėdes, jam \mamama{trūktų 6 kėdžių}{x}{x-6}. Jei jis visus stalus sustumtų po du ir prie kiekvieno dvigubo stalo pastatytų po 6 kėdes, jam \mamama{liktų 4 kėdės}{x}{x+4} Kiek stalų Petras gavo iš Jurgio?}%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\s{Petro turimų kėdžių yra \ma{6 mažiau} už kiekį, kurio reikėtų sustatyti po 4 kėdes prie stalų, todėl žymėsime...}%
+\global\protected\def\sS{Petro turimų kėdžių yra \ma{6 mažiau} už kiekį, kurio reikėtų sustatyti po 4 kėdes prie stalų, todėl žymėsime \\ $\cc{x\text{ yra kėdžių kiekis, kurio reikia sustatyti po 4 kėdes prie kiekvieno stalo}}{x-6\text{ yra Petro turimas kėdžių kiekis}}$}%
+\global\protected\def\ss{\\ Petro turimų kėdžių yra \ma{4 daugiau} už kiekį, kurio reikėtų sustatyti po 6 kėdes prie dvigubų stalų, todėl žymėsime...}%
+\global\protected\def\ssS{\\ Petro turimų kėdžių yra \ma{4 daugiau} už kiekį, kurio reikėtų sustatyti po 6 kėdes prie dvigubų stalų, todėl žymėsime\\ $\cc{x+4\text{ yra Petro turimas kėdžių kiekis}}{x\text{ yra kėdžių kiekis, kurio reikia sustatyti po 6 kėdes prie kiekvieno dvigubo stalo}}$}%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\global\edef\prob{\p}\nextstep%
+\global\edef\hint{\h}\nextstep%
+\global\edef\prob{\pp}\nextstep%
+\global\edef\hint{\hint \hh}\nextstep% 
+\global\edef\prob{\ppp}\nextstep%
+\global\edef\hint{\hint \hhh}\nextstep% 
+\global\edef\sol{\s}\nextstep%
+\global\edef\sol{\sS}\nextstep%
+\global\edef\hint{\hint \hhhh}\nextstep%
+\global\edef\prob{\pppp}\nextstep%
+\global\edef\hint{\hint \hhhhh}\nextstep% 
+\global\edef\prob{\ppppp}\nextstep%
+\global\edef\hint{\hint \hhhhhh}\nextstep% 
+\global\edef\sol{\sS \ss}\nextstep%
+\global\edef\sol{\sS \ssS}\nextstep%
+\global\edef\hint{\hint \hhhhhhh}\nextstep%
+\end{animateinline}\relax % BREAK
+\getinfo
+\section{antras bandymas}%9?
+\begin{animateinline}[controls,loop]{1}%
+\cleaning%
+\global\def\a{15.6}%
+\global\def\b{10.9}%
+\global\def\c{4.3}%
+%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\h{\colorbox{green!10!white}{Į kokius raktinius žodžius atkreipiame dėmesį?}}%
+\global\protected\def\hh{\\ \colorbox{green!20!white}{Kokius raidinius reiškinius naudojame?}}%
+\global\protected\def\hhh{\\ \colorbox{green!30!white}{Ką žymi šie reiškiniai?}}%
+\global\protected\def\hhhh{\\ \colorbox{green!40!white}{Į kokius dar raktinius žodžius atkreipiame dėmesį?}}%
+\global\protected\def\hhhhh{\\ \colorbox{green!50!white}{Kokius raidinius reiškinius naudojame?}}%
+\global\protected\def\hhhhhh{\\ \colorbox{green!60!white}{Ką žymi šie reiškiniai?}}%
+\global\protected\def\hhhhhhh{\\ \colorbox{red!70!white}{Kaip spręstumėte toliau?}}%
+%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\p{Petras atidarė blyninę. Jo draugas Jurgis davė Petrui keletą kvadratinių
+stalų ir kėdžių. Jei Petras prie kiekvieno stalo pastatytų po 4 kėdes, jam trūktų 6 kėdžių. Jei jis visus stalus sustumtų po du ir prie kiekvieno dvigubo stalo pastatytų po 6 kėdes, jam liktų 4 kėdės. Kiek stalų Petras gavo iš Jurgio?}%
+\global\protected\def\pp{Petras atidarė blyninę. Jo draugas Jurgis davė Petrui keletą kvadratinių
+stalų ir kėdžių. Jei Petras prie kiekvieno stalo pastatytų po 4 kėdes, jam \ma{trūktų 6 kėdžių}. Jei jis visus stalus sustumtų po du ir prie kiekvieno dvigubo stalo pastatytų po 6 kėdes, jam liktų 4 kėdės. Kiek stalų Petras gavo iš Jurgio?}%
+\global\protected\def\ppp{Petras atidarė blyninę. Jo draugas Jurgis davė Petrui keletą kvadratinių stalų ir kėdžių. Jei Petras prie kiekvieno stalo pastatytų po 4 kėdes, jam \mamama{trūktų 6 kėdžių}{x}{x-6}. Jei jis visus stalus sustumtų po du ir prie kiekvieno dvigubo stalo pastatytų po 6 kėdes, jam liktų 4 kėdės. Kiek stalų Petras gavo iš Jurgio?}%
+\global\protected\def\pppp{Petras atidarė blyninę. Jo draugas Jurgis davė Petrui keletą kvadratinių stalų ir kėdžių. Jei Petras prie kiekvieno stalo pastatytų po 4 kėdes, jam \mamama{trūktų 6 kėdžių}{x}{x-6}. Jei jis visus stalus sustumtų po du ir prie kiekvieno dvigubo stalo pastatytų po 6 kėdes, jam \ma{liktų 4 kėdės}. Kiek stalų Petras gavo iš Jurgio?}%
+\global\protected\def\ppppp{Petras atidarė blyninę. Jo draugas Jurgis davė Petrui keletą kvadratinių stalų ir kėdžių. Jei Petras prie kiekvieno stalo pastatytų po 4 kėdes, jam \mamama{trūktų 6 kėdžių}{x}{x-6}. Jei jis visus stalus sustumtų po du ir prie kiekvieno dvigubo stalo pastatytų po 6 kėdes, jam \mamama{liktų 4 kėdės}{x}{x+4} Kiek stalų Petras gavo iš Jurgio?}%
+\global\protected\def\pppppp{Petras atidarė blyninę. Jo draugas Jurgis davė Petrui keletą kvadratinių stalų ir kėdžių. Jei Petras prie kiekvieno stalo pastatytų po 4 kėdes, jam \mamama{trūktų 6 kėdžių}{\colorbox{green!70!white}{x+6}}{\colorbox{green!70!white}{x}}. Jei jis visus stalus sustumtų po du ir prie kiekvieno dvigubo stalo pastatytų po 6 kėdes, jam \mamama{liktų 4 kėdės}{\colorbox{green!70!white}{x-4}}{\colorbox{green!70!white}{x}} Kiek stalų Petras gavo iš Jurgio?}%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\s{Petro turimų kėdžių yra \ma{6 mažiau} už kiekį, kurio reikėtų sustatyti po 4 kėdes prie stalų...}%
+\global\protected\def\sS{Petro turimų kėdžių yra \ma{6 mažiau} už kiekį, kurio reikėtų sustatyti po 4 kėdes prie stalų \textbf{ARBA KITAIP,}...}%
+\global\protected\def\sSS{Petro turimų kėdžių yra \ma{6 mažiau} už kiekį, kurio reikėtų sustatyti po 4 kėdes prie stalų \textbf{ARBA KITAIP} kiekis, kurio reikėtų sustatyti po 4 kėdes prie stalų yra \ma{6 daugiau} už Petro turimų kėdžių kiekį, todėl žymėsime...}%
+\global\protected\def\sSSS{Petro turimų kėdžių yra \ma{6 mažiau} už kiekį, kurio reikėtų sustatyti po 4 kėdes prie stalų \textbf{ARBA KITAIP} kiekis, kurio reikėtų sustatyti po 4 kėdes prie stalų yra \ma{6 daugiau} už Petro turimų kėdžių kiekį, todėl žymėsime \\ $\cc{x+6\text{ yra kėdžių kiekis, kurio reikia sustatyti po 4 kėdes prie kiekvieno stalo}}{x\text{ yra Petro turimas kėdžių kiekis}}$}%
+\global\protected\def\ss{\\ Petro turimų kėdžių yra \ma{4 daugiau} už kiekį, kurio reikėtų sustatyti po 6 kėdes prie dvigubų stalų...}%
+\global\protected\def\ssS{\\ Petro turimų kėdžių yra \ma{4 daugiau} už kiekį, kurio reikėtų sustatyti po 6 kėdes prie dvigubų stalų \textbf{ARBA KITAIP}...}%
+\global\protected\def\ssSS{\\ Petro turimų kėdžių yra \ma{4 daugiau} už kiekį, kurio reikėtų sustatyti po 6 kėdes prie dvigubų stalų \textbf{ARBA KITAIP,} kiekis, kurio reikėtų sustatyti po 6 kėdes prie dvigubų stalų yra \ma{4 mažiau} už Petro turimų kėdžių kiekį, todėl žymėsime...}%
+\global\protected\def\ssSSS{\\ Petro turimų kėdžių yra \ma{4 daugiau} už kiekį, kurio reikėtų sustatyti po 6 kėdes prie dvigubų stalų \textbf{ARBA KITAIP,} kiekis, kurio reikėtų sustatyti po 6 kėdes prie dvigubų stalų yra \ma{4 mažiau} už Petro turimų kėdžių kiekį, todėl žymėsime\\ $\cc{x\text{ yra Petro turimas kėdžių kiekis}}{x-4\text{ yra kėdžių kiekis, kurio reikia sustatyti po 6 kėdes prie kiekvieno dvigubo stalo}}$}%
+\global\protected\def\ssSSSS{\\ Petro turimų kėdžių yra \ma{4 daugiau} už kiekį, kurio reikėtų sustatyti po 6 kėdes prie dvigubų stalų \textbf{ARBA KITAIP,} kiekis, kurio reikėtų sustatyti po 6 kėdes prie dvigubų stalų yra \ma{4 mažiau} už Petro turimų kėdžių kiekį, todėl žymėsime\\ $\cc{x\text{ yra Petro turimas kėdžių kiekis}}{x-4\text{ yra kėdžių kiekis, kurio reikia sustatyti po 6 kėdes prie kiekvieno dvigubo stalo}}$ \\ (Šį pakeitimą atlikome tam, kad kintamojo $x$ prasmės sutaptų)}%
+\global\protected\def\extras{\\ Petro turimų kėdžių yra \ma{4 daugiau} už kiekį, kurio reikėtų sustatyti po 6 kėdes prie dvigubų stalų \textbf{ARBA KITAIP,} kiekis, kurio reikėtų sustatyti po 6 kėdes prie dvigubų stalų yra \ma{4 mažiau} už Petro turimų kėdžių kiekį, todėl žymėsime\\ $\cc{x\text{ \colorbox{green!70!white}{yra Petro turimas kėdžių kiekis}}}{x-4\text{ yra kėdžių kiekis, kurio reikia sustatyti po 6 kėdes prie kiekvieno dvigubo stalo}}$ \\ (Šį pakeitimą atlikome tam, kad kintamojo $x$ prasmės sutaptų)}%
+\global\protected\def\extraS{Petro turimų kėdžių yra \ma{6 mažiau} už kiekį, kurio reikėtų sustatyti po 4 kėdes prie stalų \textbf{ARBA KITAIP} kiekis, kurio reikėtų sustatyti po 4 kėdes prie stalų yra \ma{6 daugiau} už Petro turimų kėdžių kiekį, todėl žymėsime \\ $\cc{x+6\text{ yra kėdžių kiekis, kurio reikia sustatyti po 4 kėdes prie kiekvieno stalo}}{x\text{ \colorbox{green!70!white}{yra Petro turimas kėdžių kiekis}}}$}%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\global\edef\prob{\p}\nextstep%
+\global\edef\hint{\h}\nextstep%
+\global\edef\prob{\pp}\nextstep%
+\global\edef\hint{\hint \hh}\nextstep% 
+\global\edef\prob{\ppp}\nextstep%
+\global\edef\hint{\hint \hhh}\nextstep% 
+\global\edef\sol{\s}\nextstep%
+\global\edef\sol{\sS}\nextstep%
+\global\edef\sol{\sSS}\nextstep%
+\global\edef\sol{\sSSS}\nextstep%
+\global\edef\hint{\hint \hhhh}\nextstep%
+\global\edef\prob{\pppp}\nextstep%
+\global\edef\hint{\hint \hhhhh}\nextstep% 
+\global\edef\prob{\ppppp}\nextstep%
+\global\edef\hint{\hint \hhhhhh}\nextstep% 
+\global\edef\sol{\sSSS \ss}\nextstep%
+\global\edef\sol{\sSSS \ssS}\nextstep%
+\global\edef\sol{\sSSS \ssSS}\nextstep%
+\global\edef\sol{\sSSS \ssSSS}\nextstep%
+\global\edef\prob{\pppppp}%
+\global\edef\sol{\extraS \extras}\nextstep%
+\global\edef\hint{\hint \hhhhhhh}\nextstep%
+\end{animateinline}\relax % BREAK
+\getinfo
+\newpage
+\section{Geometrinės tikimybės (pirma)}
+\begin{animateinline}[controls,loop]{1}%
+\cleaning%
+\global\def\a{20}%
+\global\def\b{17.6}%
+\global\def\c{5.6}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\h{\colorbox{green!10!white}{Pasižymime nepriklausomus dydžius $(x, y)$}}%
+\global\protected\def\hh{\\ \colorbox{green!20!white}{Kokioje srityje $\omega$ gali kisti šie dydžiai?}}%
+\global\protected\def\hhh{\\ \colorbox{green!30!white}{Pasižymime funkciją $f(x,y)$, kurios vidutinės reikšmės ieškosime}}%
+\global\protected\def\hhhh{\\ \colorbox{green!40!white}{Rasime reikšmę, kurią įgyja ieškoma funkcija taške $(x,y)$}}%
+\global\protected\def\hhhhh{\\ \colorbox{green!50!white}{Rasime erdvinės figūros, kurios aukštis taške $(x,y)$ lygus $f(x,y)$, o pagrindas} \\ \colorbox{green!50!white}{apribotas gautos srities, tūrį. Tam reikės suskaičiuoti integralą $\displaystyle \iint_\omega f(x,y) \,dx \,dy$}}%
+\global\protected\def\hhhhhh{\\ \colorbox{green!60!white}{Rasime srities, kurioje kinta dydžiai $x$ ir $y$, plotą}}%
+\global\protected\def\hhhhhhh{\\ \colorbox{green!70!white}{Padaliję figūros tūrį iš srities ploto, randame vidutinę $f(x,y)$ reikšmę}}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\p{Tarp miestų $A$ ir $B$ lygiagrečiai viena kitai nutiestos dvi telefono linijos. Atstumas tarp $A$ ir $B$ yra $n$ kilometrų, o linijos nutolusios viena nuo kitos per $m$ kilometrų. Kontroliniam matavimui speciali aparatūra prijungiama prie atsitiktinai parinktų abiejų linijų taškų. Raskite atstumo kvadrato tarp matavimo vietų vidutinę reikšmę}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\s{Tegu $\begin{cases}x\text{ yra pirmos matavimo vietos nuotolis nuo linijos pradžios} \\ y\text{ yra antros matavimo vietos nuotolis nuo linijos pradžios}\end{cases}$}%
+\global\protected\def\ss{\\ Sritis $\omega:$ \fbox{kai $x \in [0,n]$, tai $y \in [0,n]$} }%
+\global\protected\def\sss{\\ 
+Tegu $f(x,y)$ yra funkcija, kuri žymi atstumo kvadratą tarp matavimo vietų}%
+\global\protected\def\ssss{\\ $f(x,y)=(x-y)^2+m^2$}%
+\global\protected\def\sssss{\\%
+\begin{equation*}%
+\begin{split}%
+\iint_\omega f(x,y) \,dx \,dy &=\int_{0}^{n}\int_{0}^{n}(x-y)^2+m^2 \,dy \,dx\\%
+&=\int_{0}^{n}\left(\frac{-(x-y)^3}{3}+m^2y\right)\bigg\vert_{y=0}^{y=n}\,dx\\%
+&=\int_{0}^{n}\left(\frac{x^3-(x-n)^3}{3}+m^2n\right)\,dx\\%
+&=\left(\frac{x^4-(x-n)^4}{12}+m^2nx\right)\bigg\vert_{x=0}^{x=n}\,dx\\%
+&=\frac{n^4+n^4}{12}+m^2n^2\\%
+&=\frac{n^4}{6}+m^2n^2\\%
+\end{split}%
+\end{equation*}}%
+\global\protected\def\ssssss{\\ Pagrindo plotas: $n^2$}%
+\global\protected\def\sssssss{\\ Atstumo kvadrato tarp matavimo vietų vidutinė reikšmė: \\%
+$\frac{\frac{n^4}{6}+m^2n^2}{n^2}=\boxed{\frac{n^2}{6}+m^2}=3.428$}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\global\edef\prob{\p}\nextstep%
+\global\edef\hint{\h}\nextstep%
+\global\edef\sol{\s}\nextstep%
+\global\edef\hint{\hint \hh}\nextstep% 
+\global\edef\sol{\sol \ss}\nextstep%
+\global\edef\hint{\hint \hhh}\nextstep% 
+\global\edef\sol{\sol \sss}\nextstep%
+\global\edef\hint{\hint \hhhh}\nextstep% 
+\global\edef\sol{\sol \ssss}\nextstep%
+\global\edef\hint{\hint \hhhhh}\nextstep% 
+\global\edef\sol{\sol \sssss}\nextstep%
+\global\edef\hint{\hint \hhhhhh}\nextstep% 
+\global\edef\sol{\sol \ssssss}\nextstep%
+\global\edef\hint{\hint \hhhhhhh}\nextstep% 
+\global\edef\sol{\sol \sssssss}\nextstep%
+\end{animateinline}\relax % BREAK
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Geometrinės tikimybės (antra)}
+\begin{animateinline}[controls,loop]{1}%
+\cleaning%
+\global\def\a{11}%
+\global\def\b{7.5}%
+\global\def\c{3.6}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\h{\colorbox{green!10!white}{Pasižymime nepriklausomus dydžius $(x, y)$}}%
+\global\protected\def\hh{\\ \colorbox{green!20!white}{Kokioje srityje $\omega$ gali kisti šie dydžiai?}}%
+\global\protected\def\hhh{\\ \colorbox{green!30!white}{Kokioje srityje šių dydžių kitimas yra palankus}%
+\\ \colorbox{green!30!white}{(t.y. pas ligonį teks važiuoti ne daugiau nei $x$ kilometrų?)}}%
+\global\protected\def\hhhh{\\ \colorbox{green!40!white}{Apskaičiuojame tikimybę: P=$\frac{\text{srities, kurioje dydžių kitimas yra palankus, plotas}}{\text{visos srities, kurioje kinta dydžiai, plotas}}$}}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\p{Greitosios pagalbos stotis aptarnauja stačiakampio formos teritoriją, kurios ilgis ir plotis yra atitinkamai $a$ ir $b$, o pati stotis randasi vienoje iš stačiakampio viršūnių. Greitosios pagalbos automobilis iš stoties gali būti iškviestas į bet kurį teritorijos tašką, bet važiuoti jis gali tik gatvėmis, lygiagrečiomis stačiakampio kraštinėms. Kokia tikimybė, kad pas ligonį jam teks važiuoti ne daugiau, nei $x$ kilometrų?}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\s{Tegu $\begin{cases} x\text{ yra pirmoji koordinatė} \\ y\text{ yra antroji koordinatė} \end{cases}$}%
+\global\protected\def\ss{\\ (x,y) gali kisti srityje $a \times b$ }%
+\global\protected\def\sss{\\ Sritis, nutolusi ne daugiau nei $x$ kilometrų, yra išsidėsčiusi ketvirtyje apskritimo su spinduliu $x$
+}%
+\global\protected\def\ssss{\\ $P=\frac{\pi r^2/4}{ab}=\boxed{\frac{\pi r^2}{4ab}=0.168}$}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\global\edef\prob{\p}\nextstep%
+\global\edef\hint{\h}\nextstep%
+\global\edef\sol{\s}\nextstep%
+\global\edef\hint{\hint \hh}\nextstep% 
+\global\edef\sol{\sol \ss}\nextstep%
+\global\edef\hint{\hint \hhh}\nextstep% 
+\global\edef\sol{\sol \sss}\nextstep%
+\global\edef\hint{\hint \hhhh}\nextstep% 
+\global\edef\sol{\sol \ssss}\nextstep%
+\end{animateinline}\relax% BREAK
+
+\href{http://tutorial.math.lamar.edu/Classes/CalcIII/DoubleIntegrals.aspx}{Erdvinio kūno tūrį tam tikroje srityje skaičiuoja dvilypis integralas.}
+
+\href{http://tutorial.math.lamar.edu/Classes/CalcIII/DoubleIntegrals.aspx}{Čia rasite daugiau pavyzdžių, kaip jis skaičiuojamas}
+\section{Veno diagramos}
+\begin{animateinline}[controls,loop]{1}%
+\cleaning%
+\global\def\a{20.5}%
+\global\def\b{13.8}%
+\global\def\c{6.8}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\h{\colorbox{green!10!white}{Brėžinyje pavaizduokite Veno diagramą}}%
+\global\protected\def\hh{\\ \colorbox{green!20!white}{Ką atitinka vaizduojami skrituliai?}}%
+\global\protected\def\hhh{\\ \colorbox{green!30!white}{Atskiras Veno diagramų zonas pažymėkite kintamaisiais}}%
+\global\protected\def\hhhh{\\ \colorbox{green!40!white}{Kurią sritį atitinka tai, kas nurodyta paryškintoje uždavinio sąlygos dalyje?}}%
+\global\protected\def\hhhhh{\\ \colorbox{green!50!white}{Lygčių sistemoje užrašykite lygtį, kurioje nurodomas pažymėtos srities atskirų zonų sudėties rezultatas}}%
+\global\protected\def\hhhhhh{\\ \colorbox{green!60!white}{Po sistema užrašykite tai, ko ieškome paryškintoje dalyje}}%
+\global\protected\def\hhhhhhh{\\ \colorbox{green!70!white}{Išspręskite sudarytą lygčių sistemą}}%
+\global\protected\def\H{\\ \colorbox{green!80!white}{\enspace Panaudokite gautą T reikšmę kitose lygtyse}}%
+\global\protected\def\HH{\\ \colorbox{green!80!white}{\enspace\enspace\enspace Raskite $A$, $B$ ir $C$ reikšmes}}%
+\global\protected\def\HHH{\\ \colorbox{green!80!white}{\enspace\enspace\enspace Panaudokite gautas $A$, $B$ ir $C$ reikšmes kitose lygtyse}}%
+\global\protected\def\HHHH{\\ \colorbox{green!80!white}{\enspace\enspace\enspace Raskite $X$, $Y$ ir $Z$ reikšmes}}%
+\global\protected\def\HHHHH{\\ \colorbox{green!80!white}{\enspace\enspace\enspace Panaudokite gautas $X$, $Y$ ir $Z$ reikšmes pirmoje lygtyje}}%
+\global\protected\def\HHHHHH{\\ \colorbox{green!80!white}{\enspace\enspace\enspace Raskite $U$ reikšmę (tai neprivaloma atsakymui gauti)}}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\listify{\newlist{inlinelist}{enumerate*}{1}%this is a definition of good inline environment
+\setlist[inlinelist]{label={\enspace $\triangleright$}, itemjoin =\newline, before=\newline, after=\newline}}
+
+\global\protected\def\Ti{30 iš jų reguliariai skaito “Verslo žinias”}%
+\global\protected\def\Tii{25 iš jų reguliariai skaito “Baltic News”}%
+\global\protected\def\Tiii{20 iš jų reguliariai skaito “Financial Times”}%
+\global\protected\def\Tiiii{10 skaito “Verslo žinias” ir “Baltic News”}%
+\global\protected\def\Tiiiii{7 skaito “Verslo žinias'' ir “Finantial Times”}% 
+\global\protected\def\Tiiiiii{8 skaito “Baltic News” ir “Finantial Times”}%
+\global\protected\def\Tiiiiiii{3 skaito visus tris leidinius}%
+\global\protected\def\Si{Nors vieną iš minėtų laikrasčių?}%
+\global\protected\def\Sii{Bent du iš minėtų laikrasčių?}%
+\global\protected\def\Siii{Po vieną iš minėtų laikrasčių?}%
+
+\global\protected\def\p{70-ties verslo lyderių apklausa atskleidė, kad: \listify
+\begin{inlinelist} \item \Ti \item \Tii \item \Tiii \item \Tiiii \item \Tiiiii \item \Tiiiiii \item \Tiiiiiii \end{inlinelist}
+\textbf{Kiek iš apklaustųjų verslininkų skaito}: \begin{inlinelist} \item \Si \item \Sii \item \Siii \end{inlinelist}}%
+\global\protected\def\pp{\colorbox{blue!40!white}{70-ties verslo lyderių} apklausa atskleidė, kad: \listify
+\begin{inlinelist} \item \Ti \item \Tii \item \Tiii \item \Tiiii \item \Tiiiii \item \Tiiiiii \item \Tiiiiiii \end{inlinelist}
+\textbf{Kiek iš apklaustųjų verslininkų skaito}: \begin{inlinelist} \item \Si \item \Sii \item \Siii \end{inlinelist}}%
+\global\protected\def\ppp{70-ties verslo lyderių apklausa atskleidė, kad: \listify
+\begin{inlinelist} \item \colorbox{blue!40!white}{\Ti} \item \Tii \item \Tiii \item \Tiiii \item \Tiiiii \item \Tiiiiii \item \Tiiiiiii \end{inlinelist}
+\textbf{Kiek iš apklaustųjų verslininkų skaito}: \begin{inlinelist} \item \Si \item \Sii \item \Siii \end{inlinelist}}%
+\global\protected\def\pppp{70-ties verslo lyderių apklausa atskleidė, kad: \listify
+\begin{inlinelist} \item \Ti \item \colorbox{blue!40!white}{\Tii} \item \Tiii \item \Tiiii \item \Tiiiii \item \Tiiiiii \item \Tiiiiiii \end{inlinelist}
+\textbf{Kiek iš apklaustųjų verslininkų skaito}: \begin{inlinelist} \item \Si \item \Sii \item \Siii \end{inlinelist}}%
+\global\protected\def\ppppp{70-ties verslo lyderių apklausa atskleidė, kad: \listify
+\begin{inlinelist} \item \Ti \item \Tii \item \colorbox{blue!40!white}{\Tiii} \item \Tiiii \item \Tiiiii \item \Tiiiiii \item \Tiiiiiii \end{inlinelist}
+\textbf{Kiek iš apklaustųjų verslininkų skaito}: \begin{inlinelist} \item \Si \item \Sii \item \Siii \end{inlinelist}}%
+\global\protected\def\pppppp{70-ties verslo lyderių apklausa atskleidė, kad: \listify
+\begin{inlinelist} \item \Ti \item \Tii \item \Tiii \item \colorbox{blue!40!white}{\Tiiii} \item \Tiiiii \item \Tiiiiii \item \Tiiiiiii \end{inlinelist}
+\textbf{Kiek iš apklaustųjų verslininkų skaito}: \begin{inlinelist} \item \Si \item \Sii \item \Siii \end{inlinelist}}%
+\global\protected\def\ppppppp{70-ties verslo lyderių apklausa atskleidė, kad: \listify
+\begin{inlinelist} \item \Ti \item \Tii \item \Tiii \item \Tiiii \item \colorbox{blue!40!white}{\Tiiiii} \item \Tiiiiii \item \Tiiiiiii \end{inlinelist}
+\textbf{Kiek iš apklaustųjų verslininkų skaito}: \begin{inlinelist} \item \Si \item \Sii \item \Siii \end{inlinelist}}%
+\global\protected\def\pppppppp{70-ties verslo lyderių apklausa atskleidė, kad: \listify
+\begin{inlinelist} \item \Ti \item \Tii \item \Tiii \item \Tiiii \item \Tiiiii \item \colorbox{blue!40!white}{\Tiiiiii} \item \Tiiiiiii \end{inlinelist}
+\textbf{Kiek iš apklaustųjų verslininkų skaito}: \begin{inlinelist} \item \Si \item \Sii \item \Siii \end{inlinelist}}%
+\global\protected\def\ppppppppp{70-ties verslo lyderių apklausa atskleidė, kad: \listify
+\begin{inlinelist} \item \Ti \item \Tii \item \Tiii \item \Tiiii \item \Tiiiii \item \Tiiiiii \item \colorbox{blue!40!white}{\Tiiiiiii} \end{inlinelist}
+\textbf{Kiek iš apklaustųjų verslininkų skaito}: \begin{inlinelist} \item \Si \item \Sii \item \Siii \end{inlinelist}}%
+\global\protected\def\PPP{70-ties verslo lyderių apklausa atskleidė, kad: \listify
+\begin{inlinelist} \item \Ti \item \Tii \item \Tiii \item \Tiiii \item \Tiiiii \item \Tiiiiii \item \Tiiiiiii \end{inlinelist}
+\textbf{Kiek iš apklaustųjų verslininkų skaito}: \begin{inlinelist} \item \colorbox{blue!40!white}{\Si} \item \Sii \item \Siii \end{inlinelist}}%
+\global\protected\def\PPPP{70-ties verslo lyderių apklausa atskleidė, kad: \listify
+\begin{inlinelist} \item \Ti \item \Tii \item \Tiii \item \Tiiii \item \Tiiiii \item \Tiiiiii \item \Tiiiiiii \end{inlinelist}
+\textbf{Kiek iš apklaustųjų verslininkų skaito}: \begin{inlinelist} \item \Si \item \colorbox{blue!40!white}{\Sii} \item \Siii \end{inlinelist}}%
+\global\protected\def\PPPPP{70-ties verslo lyderių apklausa atskleidė, kad: \listify
+\begin{inlinelist} \item \Ti \item \Tii \item \Tiii \item \Tiiii \item \Tiiiii \item \Tiiiiii \item \Tiiiiiii \end{inlinelist}
+\textbf{Kiek iš apklaustųjų verslininkų skaito}: \begin{inlinelist} \item \Si \item \Sii \item \colorbox{blue!40!white}{\Siii} \end{inlinelist}}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\global\protected\def\s{Tegu: $\ccc{\text{skritulys VŽ atitinka verslo lyderius, kurie skaito “Verslo žinias”}}{\text{skritulys BN atitinka verslo lyderius, kurie skaito “Baltic News”}}{\text{skritulys FT atitinka verslo lyderius, kurie skaito “Finantial Times”}}$}%
+\global\protected\def\S{\includegraphics[width=\textwidth]{"venn_1".png}}%
+\global\protected\def\SS{\includegraphics[width=\textwidth]{"venn_2".png}}%
+\global\protected\def\SSS{\includegraphics[width=\textwidth]{"venn_3a".png}}%
+\global\protected\def\SSSS{\includegraphics[width=\textwidth]{"venn_3".png}}%
+\global\protected\def\SSSSS{\includegraphics[width=\textwidth]{"venn_5".png}}%
+\global\protected\def\SSSSSS{\includegraphics[width=\textwidth]{"venn_4".png}}%
+\global\protected\def\SSSSSSS{\includegraphics[width=\textwidth]{"venn_6".png}}%
+\global\protected\def\SSSSSSSS{\includegraphics[width=\textwidth]{"venn_7".png}}%
+\global\protected\def\SSSSSSSSS{\includegraphics[width=\textwidth]{"venn_8".png}}%
+\global\protected\def\SSSSSSSSSS{\includegraphics[width=\textwidth]{"venn_9".png}}%
+\global\protected\def\PS{\includegraphics[width=\textwidth]{"venn_10".png}}%
+\global\protected\def\PSS{\includegraphics[width=\textwidth]{"venn_11".png}}%
+\global\protected\def\PSSS{\includegraphics[width=\textwidth]{"venn_12".png}}%
+\global\protected\def\ss{\begin{minipage}{0.57\textwidth}\p\end{minipage}\begin{minipage}{0.37\textwidth}\S\end{minipage}}%
+\global\protected\def\sss{\begin{minipage}{0.57\textwidth}\p\end{minipage}\begin{minipage}{0.37\textwidth}\SS\end{minipage}}%
+\global\protected\def\tttt{\begin{minipage}{0.57\textwidth}\pp\end{minipage}\begin{minipage}{0.37\textwidth}\SS\end{minipage}}%
+\global\protected\def\ssss{\begin{minipage}{0.57\textwidth}\pp\end{minipage}\begin{minipage}{0.37\textwidth}\SSS\end{minipage}}%
+\global\protected\def\ttttt{\begin{minipage}{0.57\textwidth}\ppp\end{minipage}\begin{minipage}{0.37\textwidth}\SSS\end{minipage}}%
+\global\protected\def\sssss{\begin{minipage}{0.57\textwidth}\ppp\end{minipage}\begin{minipage}{0.37\textwidth}\SSSS\end{minipage}}%
+\global\protected\def\tttttt{\begin{minipage}{0.57\textwidth}\pppp\end{minipage}\begin{minipage}{0.37\textwidth}\SSSS\end{minipage}}%
+\global\protected\def\ssssss{\begin{minipage}{0.57\textwidth}\pppp\end{minipage}\begin{minipage}{0.37\textwidth}\SSSSS\end{minipage}}%
+\global\protected\def\ttttttt{\begin{minipage}{0.57\textwidth}\ppppp\end{minipage}\begin{minipage}{0.37\textwidth}\SSSSS\end{minipage}}%
+\global\protected\def\sssssss{\begin{minipage}{0.57\textwidth}\ppppp\end{minipage}\begin{minipage}{0.37\textwidth}\SSSSSS\end{minipage}}%
+\global\protected\def\tttttttt{\begin{minipage}{0.57\textwidth}\pppppp\end{minipage}\begin{minipage}{0.37\textwidth}\SSSSSS\end{minipage}}%
+\global\protected\def\ssssssss{\begin{minipage}{0.57\textwidth}\pppppp\end{minipage}\begin{minipage}{0.37\textwidth}\SSSSSSS\end{minipage}}%
+\global\protected\def\ttttttttt{\begin{minipage}{0.57\textwidth}\ppppppp\end{minipage}\begin{minipage}{0.37\textwidth}\SSSSSSS\end{minipage}}%
+\global\protected\def\sssssssss{\begin{minipage}{0.57\textwidth}\ppppppp\end{minipage}\begin{minipage}{0.37\textwidth}\SSSSSSSS\end{minipage}}%
+\global\protected\def\tttttttttt{\begin{minipage}{0.57\textwidth}\pppppppp\end{minipage}\begin{minipage}{0.37\textwidth}\SSSSSSSS\end{minipage}}%
+\global\protected\def\ssssssssss{\begin{minipage}{0.57\textwidth}\pppppppp\end{minipage}\begin{minipage}{0.37\textwidth}\SSSSSSSSS\end{minipage}}%
+\global\protected\def\ttttttttttt{\begin{minipage}{0.57\textwidth}\ppppppppp\end{minipage}\begin{minipage}{0.37\textwidth}\SSSSSSSSS\end{minipage}}%
+\global\protected\def\sssssssssss{\begin{minipage}{0.57\textwidth}\ppppppppp\end{minipage}\begin{minipage}{0.37\textwidth}\SSSSSSSSSS\end{minipage}}%
+\global\protected\def\pt{\begin{minipage}{0.57\textwidth}\PPP\end{minipage}\begin{minipage}{0.37\textwidth}\SS\end{minipage}}%
+\global\protected\def\ps{\begin{minipage}{0.57\textwidth}\PPP\end{minipage}\begin{minipage}{0.37\textwidth}\PS\end{minipage}}%
+\global\protected\def\ptt{\begin{minipage}{0.57\textwidth}\PPPP\end{minipage}\begin{minipage}{0.37\textwidth}\PS\end{minipage}}%
+\global\protected\def\pss{\begin{minipage}{0.57\textwidth}\PPPP\end{minipage}\begin{minipage}{0.37\textwidth}\PSS\end{minipage}}%
+\global\protected\def\pttt{\begin{minipage}{0.57\textwidth}\PPPPP\end{minipage}\begin{minipage}{0.37\textwidth}\PSSS\end{minipage}}%
+\global\protected\def\psss{\begin{minipage}{0.57\textwidth}\PPPPP\end{minipage}\begin{minipage}{0.37\textwidth}\PSSS\end{minipage}}%
+\global\protected\def\ms{\\ $\begin{cases} X+Y+Z+A+B+C+T+U=70\\ \\ \\ \\ \\ \\ \\ \\ \end{cases}$}%
+\global\protected\def\mss{\\ $\begin{cases} X+Y+Z+A+B+C+T+U=70\\ X+A+B+T=30 \\ \\ \\ \\ \\ \\ \\ \end{cases}$}%
+\global\protected\def\msss{\\ $\begin{cases} X+Y+Z+A+B+C+T+U=70\\ X+A+B+T=30\\ Y+A+C+T=25\\ \\ \\ \\ \\ \\ \end{cases}$}%
+\global\protected\def\mssss{\\ $\begin{cases} X+Y+Z+A+B+C+T+U=70\\ X+A+B+T=30\\ Y+A+C+T=25\\ Z+B+C+T=20\\ \\ \\ \\ \\ \end{cases}$}%
+\global\protected\def\msssss{\\ $\begin{cases} X+Y+Z+A+B+C+T+U=70\\ X+A+B+T=30\\ Y+A+C+T=25\\ Z+B+C+T=20\\ A+T=10\\ \\ \\ \\ \end{cases}$}%
+\global\protected\def\mssssss{\\ $\begin{cases} X+Y+Z+A+B+C+T+U=70\\ X+A+B+T=30\\ Y+A+C+T=25\\ Z+B+C+T=20\\ A+T=10\\ B+T=7 \\ \\ \\ \end{cases}$}%
+\global\protected\def\msssssss{\\ $\begin{cases} X+Y+Z+A+B+C+T+U=70\\ X+A+B+T=30\\ Y+A+C+T=25\\ Z+B+C+T=20\\ A+T=10\\ B+T=7 \\ C+T=8 \\ \\ \end{cases}$}%
+\global\protected\def\mssssssss{\\ $\begin{cases} X+Y+Z+A+B+C+T+U=70\\ X+A+B+T=30\\ Y+A+C+T=25\\ Z+B+C+T=20\\ A+T=10\\ B+T=7 \\ C+T=8 \\ T=3 \end{cases}$}%
+\global\protected\def\solutione{\\ $\begin{cases} X+Y+Z+A+B+C+3+U=70\\ X+A+B+3=30\\ Y+A+C+3=25\\ Z+B+C+3=20\\ A+3=10\\ B+3=7 \\ C+3=8 \\ T=3 \end{cases}$}%
+\global\protected\def\solutionee{\\ $\begin{cases} X+Y+Z+A+B+C+U=67\\ X+A+B=27\\ Y+A+C=22\\ Z+B+C=17\\ A=7\\ B=4 \\ C=5 \\ T=3 \end{cases}$}%
+\global\protected\def\solutioneee{\\ $\begin{cases} X+Y+Z+7+4+5+U=67\\ X+7+4=27\\ Y+7+5=22\\ Z+4+5=17\\ A=7\\ B=4 \\ C=5 \\ T=3 \end{cases}$}%
+\global\protected\def\solutioneeee{\\ $\begin{cases} X+Y+Z+U=51\\ X=16\\ Y=10\\ Z=8\\ A=7\\ B=4 \\ C=5 \\ T=3 \end{cases}$}%
+\global\protected\def\solutioneeeee{\\ $\begin{cases} 16+10+8+U=51\\ X=16\\ Y=10\\ Z=8\\ A=7\\ B=4 \\ C=5 \\ T=3 \end{cases}$}%
+\global\protected\def\solutioneeeeee{\\ $\begin{cases} U=17\\ X=16\\ Y=10\\ Z=8\\ A=7\\ B=4 \\ C=5 \\ T=3 \end{cases}$}%
+\global\protected\def\adds{\mssssssss \\ $X+Y+Z+A+B+C+T=?$}%
+\global\protected\def\addss{\mssssssss \\ $X+Y+Z+A+B+C+T=?$ \\ $A+B+C+T=?$}%
+\global\protected\def\addsss{\mssssssss \\ $X+Y+Z+A+B+C+T=?$ \\ $A+B+C+T=?$ \\ $X+Y+Z=?$}%
+\global\protected\def\addssse{\solutione \\ $X+Y+Z+A+B+C+T=?$ \\ $A+B+C+T=?$ \\ $X+Y+Z=?$}%
+\global\protected\def\addsssee{\solutionee \\ $X+Y+Z+A+B+C+T=?$ \\ $A+B+C+T=?$ \\ $X+Y+Z=?$}%
+\global\protected\def\addssseee{\solutioneee \\ $X+Y+Z+A+B+C+T=?$ \\ $A+B+C+T=?$ \\ $X+Y+Z=?$}%
+\global\protected\def\addssseeee{\solutioneeee \\ $X+Y+Z+A+B+C+T=?$ \\ $A+B+C+T=?$ \\ $X+Y+Z=?$}%
+\global\protected\def\addssseeeee{\solutioneeeee \\ $X+Y+Z+A+B+C+T=?$ \\ $A+B+C+T=?$ \\ $X+Y+Z=?$}%
+\global\protected\def\addssseeeeee{\solutioneeeeee \\ $X+Y+Z+A+B+C+T=?$ \\ $A+B+C+T=?$ \\ $X+Y+Z=?$}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\global\edef\prob{\p}\nextstep%
+\global\edef\hint{\h}\nextstep%
+\global\edef\prob{\ss}\nextstep%
+\global\edef\hint{\h \hh}\nextstep% 
+\global\edef\sol{\s}\nextstep%
+\global\edef\hint{\h \hh \hhh}\nextstep% 
+\global\edef\prob{\sss}\nextstep%
+%LOOP1: (asking, coloring, asking and adding to system)
+\global\edef\hint{\h \hh \hhh \hhhh}%
+\global\edef\prob{\tttt}\nextstep%
+\global\edef\prob{\ssss}\nextstep%
+\global\edef\hint{\h \hh \hhh \hhhh \hhhhh}\nextstep%
+\global\edef\sol{\s \ms}\nextstep%
+%LOOP2: (asking, coloring, asking and adding to system)
+\global\edef\hint{\h \hh \hhh \hhhh}%
+\global\edef\prob{\ttttt}\nextstep%
+\global\edef\prob{\sssss}\nextstep%
+\global\edef\hint{\h \hh \hhh \hhhh \hhhhh}\nextstep%
+\global\edef\sol{\s \mss}\nextstep%
+%LOOP3: (asking, coloring, asking and adding to system)
+\global\edef\hint{\h \hh \hhh \hhhh}%
+\global\edef\prob{\tttttt}\nextstep%
+\global\edef\prob{\ssssss}\nextstep%
+\global\edef\hint{\h \hh \hhh \hhhh \hhhhh}\nextstep%
+\global\edef\sol{\s \msss}\nextstep%
+%LOOP4: (asking, coloring, asking and adding to system)
+\global\edef\hint{\h \hh \hhh \hhhh}%
+\global\edef\prob{\ttttttt}\nextstep%
+\global\edef\prob{\sssssss}\nextstep%
+\global\edef\hint{\h \hh \hhh \hhhh \hhhhh}\nextstep%
+\global\edef\sol{\s \mssss}\nextstep%
+%LOOP5: (asking, coloring, asking and adding to system)
+\global\edef\hint{\h \hh \hhh \hhhh}%
+\global\edef\prob{\tttttttt}\nextstep%
+\global\edef\prob{\ssssssss}\nextstep%
+\global\edef\hint{\h \hh \hhh \hhhh \hhhhh}\nextstep%
+\global\edef\sol{\s \msssss}\nextstep%
+%LOOP6: (asking, coloring, asking and adding to system)
+\global\edef\hint{\h \hh \hhh \hhhh}%
+\global\edef\prob{\ttttttttt}\nextstep%
+\global\edef\prob{\sssssssss}\nextstep%
+\global\edef\hint{\h \hh \hhh \hhhh \hhhhh}\nextstep%
+\global\edef\sol{\s \mssssss}\nextstep%
+%LOOP7: (asking, coloring, asking and adding to system)
+\global\edef\hint{\h \hh \hhh \hhhh}%
+\global\edef\prob{\tttttttttt}\nextstep%
+\global\edef\prob{\ssssssssss}\nextstep%
+\global\edef\hint{\h \hh \hhh \hhhh \hhhhh}\nextstep%
+\global\edef\sol{\s \msssssss}\nextstep%
+%LOOP8: (asking, coloring, asking and adding to system)
+\global\edef\hint{\h \hh \hhh \hhhh}%
+\global\edef\prob{\ttttttttttt}\nextstep%
+\global\edef\prob{\sssssssssss}\nextstep%
+\global\edef\hint{\h \hh \hhh \hhhh \hhhhh}\nextstep%
+\global\edef\sol{\s \mssssssss}\nextstep%
+%SHORT SUMMARISATION
+\global\edef\prob{\p}%
+\global\edef\hint{\h \hh \hhh}\nextstep%
+%EXTRA LOOP1: (asking, coloring, asking and adding to system)
+\global\edef\hint{\h \hh \hhh \hhhh}%
+\global\edef\prob{\pt}\nextstep%
+\global\edef\prob{\ps}\nextstep%
+\global\edef\hint{\h \hh \hhh \hhhh \hhhhhh}\nextstep%
+\global\edef\sol{\s \adds}\nextstep%
+%EXTRA LOOP2: (asking, coloring, asking and adding to system)
+\global\edef\hint{\h \hh \hhh \hhhh}%
+\global\edef\prob{\ptt}\nextstep%
+\global\edef\prob{\pss}\nextstep%
+\global\edef\hint{\h \hh \hhh \hhhh \hhhhhh}\nextstep%
+\global\edef\sol{\s \addss}\nextstep%
+%EXTRA LOOP3: (asking, coloring, asking and adding to system)
+\global\edef\hint{\h \hh \hhh \hhhh}%
+\global\edef\prob{\pttt}\nextstep%
+\global\edef\prob{\psss}\nextstep%
+\global\edef\hint{\h \hh \hhh \hhhh \hhhhhh}\nextstep%
+\global\edef\sol{\s \addsss}\nextstep%
+\global\edef\hint{\h \hh \hhh \hhhh \hhhhhhh}\nextstep%
+\global\edef\hint{\h \hh \hhh \hhhh \hhhhhhh \H}\nextstep%
+\global\edef\sol{\s \addssse}\nextstep%
+\global\edef\hint{\h \hh \hhh \hhhh \hhhhhhh \H \HH}\nextstep%
+\global\edef\sol{\s \addsssee}\nextstep%
+\global\edef\hint{\h \hh \hhh \hhhh \hhhhhhh \H \HH \HHH}\nextstep%
+\global\edef\sol{\s \addssseee}\nextstep%
+\global\edef\hint{\h \hh \hhh \hhhh \hhhhhhh \H \HH \HHH \HHHH}\nextstep%
+\global\edef\sol{\s \addssseeee}\nextstep%
+\global\edef\hint{\h \hh \hhh \hhhh \hhhhhhh \H \HH \HHH \HHHH \HHHHH}\nextstep%
+\global\edef\sol{\s \addssseeeee}\nextstep%
+\global\edef\hint{\h \hh \hhh \hhhh \hhhhhhh \H \HH \HHH \HHHH \HHHHH \HHHHHH}\nextstep%
+\global\edef\sol{\s \addssseeeeee}\nextstep%
+\end{animateinline}\relax % BREAK
+\getinfo
+\end{document}

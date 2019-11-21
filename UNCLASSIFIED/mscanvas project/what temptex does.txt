@@ -1,0 +1,1 @@
+It's a sample of file to be executed when you run mscanvas

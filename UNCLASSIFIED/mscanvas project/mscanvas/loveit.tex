@@ -1,0 +1,40 @@
+self.button_menu_mathinput(formula=r"burgis")
+
+self.button_menu_mathinput(formula=r"burgis")
+self.coords(self.find_withtag('button2')[0], (418.0, 426.0, 455.0, 439.0));
+self.coords(self.find_withtag('button2')[1], (436.0000000000001, 432.0000000000001));
+
+self.button_menu_mathinput(formula=r"burgis")
+self.coords(self.find_withtag('button3')[0], (636.0000000000001, 361.0, 673.0, 374.0));
+self.coords(self.find_withtag('button3')[1], (654.0, 367.0));
+
+self.button_menu_mathinput(formula=r"burgis")
+self.coords(self.find_withtag('button4')[0], (390.00000000000006, 187.00000000000003, 427.0, 200.0));
+self.coords(self.find_withtag('button4')[1], (408.0, 193.0));
+
+self.create_edge('button4','button2');
+
+self.create_edge('button1','edge1');
+
+self.create_edge('button3','edge2');
+
+self.button_menu_mathinput(formula=r"burgis")
+self.coords(self.find_withtag('button5')[0], (724.0, 180.00000000000003, 761.0, 193.00000000000006));
+self.coords(self.find_withtag('button5')[1], (742.0, 186.0));
+
+self.create_edge('button5','edge3');
+
+self.button_menu_mathinput(formula=r"burgis")
+self.coords(self.find_withtag('button6')[0], (713.0, 293.0, 750.0, 306.0));
+self.coords(self.find_withtag('button6')[1], (731.0000000000001, 299.0));
+
+self.create_edge('button6','edge4');
+
+self.button_menu_delete('button1');
+
+self.set_buttoncolor(True, 'darkgreen');
+
+self.main_menu_paintoff([(608.0, 389.0), (611.0, 355.0), (667.0, 335.0), (704.0, 362.0), (694.0, 409.0), (633.0, 413.0), (695.0, 299.0), (720.0, 332.0), (757.0, 342.0), (755.0, 382.0), (781.0, 401.0), (807.0, 397.0), (798.0, 382.0), (779.0, 369.0), (792.0, 335.0), (796.0, 270.0), (744.0, 259.0), (707.0, 275.0)]);
+
+self.main_menu_paintoff([(673.0, 196.0), (703.0, 209.0), (739.0, 218.0), (812.0000000000001, 195.0), (794.0, 157.0), (709.0, 142.0), (683.0, 182.0)]);
+

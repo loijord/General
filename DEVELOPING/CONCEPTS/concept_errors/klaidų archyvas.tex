@@ -1,0 +1,176 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[L7x]{fontenc}
+\usepackage[lithuanian]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm, footskip=1cm, a4paper]{geometry}
+\usepackage{hyperref}
+\usepackage{verbatim}
+\usepackage{tasks}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\begin{document}
+\begin{comment}
+\href{http://tutorial.math.lamar.edu/Classes/CalcII/IntegrationByParts.aspx}{Integravimas dalimis} 
+\begin{tabular}{c|c||c}
+\hline \\
+$x^4$ & $e^\frac{x}{2}$ & +\\
+$4x^3$ & $2e^\frac{x}{2}$ & -\\
+$12x^2$ & $4e^\frac{x}{2}$ & +\\
+$24x$ & $8e^\frac{x}{2}$ & -\\
+$24$ & $32e^\frac{x}{2}$ & +\\
+\end{tabular}
+\section*{Kokio požiūrio į matematiką reikia siekti norint sėkmingai parašyti kontrolinius}
+
+Mokyklinė matematika - tai daugybės taisyklių rinkinys, kurios vieniems moksleiviams yra lengvos, nes jiems lengva pastebėti, kaip jos tarpusavyje susiję, o kitiems sunkios, nes jie negali pastebėti, kaip jos tarpusavyje susiję ir dėl to jų kiekis palyginus su kitais mokslais atminčiai tampa per dideliu pagal atminties sugebėjimus.
+
+Matematikos mokytojai dažniausiai nemoko, kaip pastebėti taisyklių tarpusavio ryšį, o tikrina tik galutinį rezultatą: kaip moksleiviai jas moka ir taiko.
+
+Siekiant gerų rezultatų matematikoje būtina žinoti, jog matematikos išmanymas ne tik vystosi nuo darželio ligi mokyklos baigimo, bet ir su lyg kiekviena nauja matematikos tema pereina tris fazes:
+\begin{itemize}
+\item Matematinių ir ne matematinių objektų įsivaizdavimą kalbos prasme, vaizdinių prasme ir mintiniais eksperimentais
+\item Objektų tarpusavio ryšio supratimą naudojant matematines operacijas
+\item Vis besivystantį gebėjimą išmanyti taisykles, mokėti jomis remtis ir iš jų išvesti naujas.
+\end{itemize}
+
+Matematikos supratimas gali išsivystyti tik perėjus (vieną po kitos) visas tris fazes. Per matematikos kontrolinius ir egzaminus yra reikalaujama tik tokio matematinio supratimo, kuris atitinka paskutinę fazę. Deja, bet mąstymui nepereinant pirmų dviejų fazių, matematikos mokėjimas tiek, kiek reikia kontroliniui, bus trumpalaikis, o po ilgesnio nekryptingo mokymosi proceso nebeįmanomas.
+
+Mano pamokose moksleiviai dažnai pasižymi taisyklių nemokėjimu arba užmiršimu, todėl pagrindinis dėmesys yra skiriamas ne versti mokinį per trumpą laiką jas išmokti, o nagrinėti, kaip jas galima įsiminti neperkraunant atminties. Nagrinėjimą laikau sėkmingu, jei moksleivis geba susisteminti atmintyje ir įsisavinti matematines taisykles taip, kad jų prisiminimas nekliudytų kontroliniams ir būsimoms matematikos pamokų temoms. Siekiant šio tikslo dažnai prireikia atsiriboti nuo dabartinės moksleivio patirties neatitinkančios mokyklinės mokymo programos ir pereiti prie į programą neįeinančio skaičiaus, kintamojo ir matematinių operacijų iliustravimo bei mintinių eksperimentų, matematinės kalbos tikslinimo. Taip pat moksleivis turi stengtis suvokti, kuriose temose turi spragų, kokia tų spragų prigimtis ir poveikis paskesnėms temoms bei laikytis plano norėdamas tas spragas likviduoti.
+\end{comment}
+\section*{Pastebėtos mokinių spragos}
+
+\subsection*{Pastovus užmiršimas, kokie yra veiksmų su teig./neig. skaičiais rezultatai}
+\textbf{Spragos pavyzdys.} 
+
+Kam lygu -2.5+3? Kam lygu 40:(-5)? Moksleivis spėja kelis kartus, kol pataiko.
+
+\textbf{Spragos priežastys.}
+Išmokus neigiamų ir teigiamų skaičių veiksmų taisykles, jos dažnai užsimiršinėja. Tai vyksta todėl, kad įgyta patirtis mokantis taisykles yra nuobodi, neprasminga ir nepatikrinama.
+
+\textbf{Kaip pašalinti spragą} 
+Mokantis ilgam lakotarpiui reikia stengtis labiau ne prisiminti neigiamų skaičių veiksmų taisykles, o prasmingus pavyzdžius, kur jos pasitaiko. Tuose pavyzdžiuose turi atsispindėti skaičių ir jų veiksmų prasmės. Pavyzdžiui:
+
+\begin{tabular}{|c|l|}
+\hline
+\textbf{Veiksmas} & \textbf{Prasmė} \\ \hline 
+$2 - 3,5 = -1,5$ & uždirbau 2 ir išleidau 3,5, vadinasi turiu 1,5 minuso\\ \hline
+$-1,5 - 3,5 = -5$ & išleidau 1,5 ir išleidau 3,5, vadinasi turiu 5 minuso\\ \hline
+$-1,5 + 3,5 = 2$ & išleidau 1,5 ir uždirbau 3,5, dabar turiu 2 pliuso\\ \hline
+$-1,5 -(- 3,5) = 2$ & išleidau 1,5 ir  {\color{red}išleidau išleidau} 3,5, dabar turiu (?) \\ \hline
+\end{tabular}
+
+Iš paskutinio veiksmo pavyzdžio matome, kad ne visada naujas sugalvotas kontekstas pakankamai stiprus paaiškinti visus veiksmus. Tai dažnas atvejis matematikoje pereinant prie vis sudėtingesnių sąvokų. Nepaisant to reikia stengtis išlikti kūrybišku ir paieškoti naujų prasmių.
+
+ \begin{tabular}{|c|l|}
+\hline
+\textbf{Veiksmas} & \textbf{Prasmė} \\ \hline 
+$2 - 3,5 = -1,5$ & pirmyn 2 ir atbulai 3,5, vadinasi atbulai 1,5\\ \hline
+$-1,5 - 3,5 = 5$ & atbulai 1,5 ir atbulai 3,5, vadinasi atbulai 5 \\ \hline
+$-1,5 + 3,5 = 2$ & atbulai 1,5 ir pirmyn 3,5, vadinasi pirmyn 2\\ \hline
+$-1,5 -(- 3,5) = 2$ & $\begin{array}{ll}\text{atbulai 1,5 ir  {\color{teal}atbulai nuo atbulinės krypties 3,5,}}\\ \text{ vadinasi atbulai 1,5 ir pirmyn 3,5, vadinasi pirmyn 2} \end{array}$ \\ \hline
+\end{tabular}
+
+Iš šių pavyzdžių reikia prisiminti tik tiek, kad skaičių sudėtį ir atimtį lengviausia paaiškinti suteikiant veiksmams tokias prasmes: 
+$$\text{Skaičius} = \begin{cases} \text{\textbf{poslinkis pirmyn}, jei jis teigiamas} \\ \text{\textbf{poslinkis atgal}, jei jis neigiamas}\end{cases} \text{Minuso ženklas} = \text{\textbf{krypties apgręžimas}}$$
+
+Taip pat matėme, kad sudėties ir atimties prasmė gali būti $$\text{Skaičius}=\begin{cases} \text{\textbf{uždirbta suma}, jei skaičius teigiamas} \\ \text{\textbf{išleista suma}, jei skaičius neigiamas}\end{cases},$$ tačiau ji nepakankamai užbaigta, nes sumos apgręžimas gyvenime nepasitaiko.
+
+Panašiomis idėjomis remdamiesi galime sugalvoti, kokią prasmę turi teigiamų ir neigiamų skaičių daugyba.
+
+\begin{tabular}{|c|l|}
+\hline
+\textbf{Veiksmas} & \textbf{Prasmė} \\ \hline 
+$2 \cdot 3,5 = 7$ & 2 kartus sutikau uždirbti po 3,5, vadinasi turiu 7 pliuso\\ \hline
+$2 \cdot (-3,5) = -7$ & 2 kartus sutikau išleisti po 3,5, vadinasi turiu 7 minuso\\ \hline
+$-2 \cdot 3,5 = -7$ & 2 kartus atsisakiau uždirbti po 3,5, vadinasi turiu 7 minuso\\ \hline
+$-2\cdot (- 3,5) = 7$ & 2 kartus atsisakiau išleisti po 3,5, vadinasi turiu 7 pliuso \\ \hline
+\end{tabular}
+
+Šiuo atveju daugybos prasmė tokia:
+
+$$\text{Pirmas daugiklis} = \begin{cases} \text{\textbf{kiek kartų sutikau}, jei jis teigiamas} \\ \text{\textbf{kiek kartų atsisakiau}, jei jis neigiamas}\end{cases}$$ $$\text{Antras daugiklis} = \begin{cases} \text{\textbf{uždirbta suma}, jei jis teigiamas} \\ \text{\textbf{išleista suma}, jei jis neigiamas}\end{cases}$$
+
+Dalybos atveju užtenka prisiminti, kad rezultatų ženklai yra tokie patys, kaip daugybos atveju. Pavyzdžiai iš gyvenimo yra per daug tolimi, kad galėtume suteikti dalybai prasmę ir tokiu atveju yra vadovaujasi matematiniu išvedimu (loginis pagrindas: padalinti iš -1 reiškia padauginti iš -1).
+
+\subsection*{Nemokėjimas taikyti distributyvumo}
+\textbf{Spragos pavyzdys.} Įprastai moksleiviams nuo 5 iki 12 klasės duodu atlikti testą, kur reikia apskaičiuoti:
+\begin{enumerate}
+\item kiek bus $x+x$? (5 klasės lygis)
+\item kiek bus 1km+2km? (pradinių klasių lygis)
+\item kiek bus $\frac{1}{3}+\frac{2}{3}$? (5 - 6 klasės lygis)
+\item kiek bus $\sqrt{7}+2\sqrt{7}$? (9 klasės lygis)
+\item kiek bus $2(x^2+1)+3(x^2+1)$? (7? klasės lygis)
+\end{enumerate}
+Moksleivių atsakymai į šį testą stulbinamai skiriasi. Gabus penktokas atsako į visus klausimus išskyrus paskutinį.
+8-9 klasės moksleiviai, turintys daug spragų mintinai žino, kam lygu 1km+2km. Taip pat jie moka procedūriškai (neinterpretuodami) atlikti $\frac{1}{3}+\frac{2}{3}$, veiksmo $x+x$ rezultatą pateikia kaip $2x^2$ arba kaip vieną galimą iš $2x$ ir $2x^2$, o $\sqrt{7}+2\sqrt{7}$ ir $2(x^2+1)+3(x^2+1)$ yra per sunku. Palyginimui gabesnioji abiturientė į visus klausimus atsako teisingai, tačiau paskutinįjį apskaičiuoja ilgesniu procedūriniu būdu (iš pradžių atskliaudžiame, tuomet sutraukiame panašiuosius narius)
+
+\textbf{Spragos priežastys.} Visi pavyzdžiai pasižymi tuo, kad juose reikia sudėti po kažkelis vienodus objektus ir parašyti, kiek jų gavosi. Šie objektai - tai iksas, kilometras, trečioji, šaknis iš 7 ir reiškinys $x^2+1$. Moksleiviai nukenčia stengdamiesi kiekvienam veiksmui taikyti skirtingas procedūras (kurių dažnai neatsimena), tačiau neturi pakankamų mąstymo įrankių suprasti, jog visi atlikti veiksmai pasižymėjo ta pačia pagrindine savybe.  
+
+\textbf{Kaip pašalinti spragą} Pagal Piaget (kognityvinės raidos pradininką) tokia mąstysena priskiriama formalių operacijų fazei, kuri yra priklausanti ne nuo matematinių taisyklių mokėjimo, o kognicijos išsivystymo. Norint paspartinti šį išsivystymą reikėtų individui suteikti tam tikros patirties. Tyrimai parodė, kad silpnesnieji moksleiviai matematiką geriau išmoksta projektų pagalba. Dėl to siūlau per pamoką atikti projektą \textbf{Veiksmai su kortelėmis}. 
+
+Pagal profesorių D. Tall, 30 metų atlikusio tyrimus apie tai, kaip žmonės išmoksta mąstyti matematiškai, daugelis matematikoje vartojamų reiškinių yra ypatingos sintaksės struktūros \textbf{\textit{proceptai}}, nepasitaikantys kalboje, nes vienu metu žymi ir \textit{procesą}, ir \textit{sąvoką}. Pvz. 2+3 žymi ir sudėtį, ir sumą, o $2x+6$ žymi ir skaičiavimo procesą (padauginti iš 2 ir pridėti 6) ir algebrinę išraišką, pasižyminčią jai priskirtinomis \textit{sąvybėmis} (gali įgyti reikšmę arba būti išskaidyta). \textit{Proceptualus mąstymas} - tai toks mąstymas, kuomet dirbant su reiškiniais pagal kontekstą gebama lanksčiai šokinėti tarp proceso, sąvokos bei jų savybių. Tuo tarpu mūsų šalies moksleiviai, kurie nėra gabūs matematikoje, pasižymi \textit{Procedūriniu mąstymu} - tokiu mąstymu, kuomet matematiniuose uždaviniuose yra stengiamasi ne sugalvoti, o prisiminti, ką po ko reikia atlikti, norint gauti atsakymą. Remdamasis D. Tall galiu pasiūlyti pluoštą pratimų, skirtų ugdyti proceptualų mąstymą, kai procedūrinis nesiseka. Jie yra tokio pobūdžio: 
+
+
+\begin{enumerate}
+
+\item Pavaizduokite, kodėl taisyklė $A^2-B^2=(A-B)(A+B)$ yra teisinga ir pritaikykite ją reiškiniams $2x+3$ ir $x+2$
+\item Užrašykite, kaip atrodys taisyklės atlikus įvardytus įsistatymus arba pratęskite lygybes atlikdami nurodytus pakeitimus.
+\begin{tasks}(2)
+\task $\sin(x+y)\underbrace{=}_{\begin{cases} x \to x\\y \to x\end{cases}}\sin{x}\cos{y}+\cos{x}\sin{y}$
+\task $(a^3)^5\underbrace{=}_{a^3\to a\cdot a\cdot a} \dots \underbrace{=}_{(a\cdot a\cdot a)^5= ?} \dots$.
+\task $(x+y)^2\underbrace{=}_{\begin{cases} x \to x\\y \to 2\end{cases}}x^2+2xy+y^2$
+\task $(x+y)^2\underbrace{=}_{\begin{cases} x \to 1\\y \to 2\end{cases}}x^2+2xy+y^2$
+\task $(x+y)^2\underbrace{=}_{\begin{cases} x \to a\\y \to b\end{cases}}x^2+2xy+y^2$
+\task $(x+y)^2\underbrace{=}_{\begin{cases} x \to x\\y \to y+z\end{cases}}x^2+2xy+y^2$
+\task $(x+y)^2\underbrace{=}_{\begin{cases} x \to \sin x\\y \to cos x\end{cases}}x^2+2xy+y^2$
+\task $x^2+2xy+y^2 \underbrace{=}_{x^2+y^2\to7} \dots$
+\task $\frac{7}{\sin{x}^2+\cos{y}^2} \underbrace{=}_{\sin{x}^2+\cos{y}^2\to 1} \dots$
+\task $a=\frac{v-v_0}{t} \underbrace{=}_{t\to \frac{s}{v}} \dots$
+\end{tasks}
+\end{enumerate}
+
+\subsection*{Lygybės tęsimas bet kaip keičiant reiškinio dalis}
+
+\textbf{Spragos pavyzdys.} 
+
+$\sqrt{18}=\sqrt{2\cdot 9}=\sqrt{4}\cdot \sqrt{9}$...
+
+$\sqrt{45}=$... nežinau, kaip išskaidyti, kad pasidarytų.
+
+\textbf{Spragos priežastys.}
+
+Galimas daiktas, jog į lygybę žiūrima kaip į komandą ,,daryk kažką''. Lygybės savybė, kad ji gali būti pratęsta atlikus tam tikroje dalyje reiškinio teisingus skaičiavimus arba pertvarkymus nėra iki galo suprasta. Pavyzdžiui, jei mokinys $\sqrt[3]{2}$ pol lygybės pakeičia į $\sqrt[3]{8}$, tai gali rodyti, jog $\sqrt[3]{8}$ turi per mažai bendro su jai lygia reikšme 2 panašiai kaip 2+7 turi per mažai bendro su 11-2. Spėju, kad tai proceptualaus mąstymo trūkumas, kuomet šaknies traukimo procesas (kartais pavykstantis, o kartais ne) per sunkiai siejasi su šaknimi, kaip su sąvoka arba vientisu objektu, kurio struktūros sprendimo eigoje nekeičiame.  Kitas proceptualaus mąstymo trūkumo signalas būtų nesugebėjimas lanksčiai parinkti tinkamos sandaugos $45=9\cdot 5$, kad vienas daugiklis būtų toks, iš kurio šaknies traukimas pavyksta. 
+
+\textbf{Kaip pašalinti spragą} 
+
+Moksleiviui reikia įgyti patirties bandant kiekvieną skaičių išskaidyti daugikliais visais įmanomais būdais. Skaidymo dauginamaisiais procedūros paskirtis yra tą patį skaičių gebėti užrašyti skirtingomis formomis. Tačiau pajusti, kokia forma yra palankiausia šaknies traukimui, galima tik savo patirtimi. Tik vėliau galima pereiti prie nagrinėjimo, kokį vaidmenį atlieka šaknies traukimo procesas iš sandaugos ir sandaugos, kuri parašyta tinkamiausia forma. Rekomenduojai pratimai: išskaidyti keletą skaičių: 100, 104, 75, 243, 98 visomis įmanomomis sandaugomis ir nustatyti šių skaičių šaknis skirstant pirminius daugiklius į grupes.
+
+\begin{comment}
+\section*{Spragos pagal D. Tall.}
+
+\textbf{Spragos pavyzdys.} 
+
+Dešimtmetis Haris sunkiai atlikdavo matematines procedūras, todėl mokėsi matematikos papidomai. Iš pradžių jam buvo sunku atlikti daugybą stulpeliu, tačiau laikui bėgant palengvėjo. Tačiau atsirado sunkumų dirbant su dešimtainėmis trupmenomis. Hario atsakymai: 
+\begin{itemize}
+\item Kiek bus 12,5\$? - 12 dolerių ir 5 centai.
+\item Kiek bus pusė? - 0,5.
+\item Kiek bus trečdalis? - 0,1 (pagal spėjimą.)
+\end{itemize}
+
+\textbf{Spragos priežastys.}
+Nesuprantama kablelio ir skaičių skyrių prasmė
+
+\textbf{Kaip pašalinti spragą} 
+
+Naudoti mokomąją priemonę - stumdomas juosteles, kurios padeda išskaidyti skaičių pagal skyrius ir atikti daugybą bei dalybą iš 10. Rezultatas: po kelių minučių stumdant juosteles su tik vienu skaitmeniu gale Hariui paaiškėjo, kad 0,5 reiškia 5 dešimtąsiais. Jis apsidžiaugė, ka suprato, jog 0,1 yra viena dešimtoji. Po to pavyko išsiaiškinti skaičių 0,5, 0,50 ir 0,05 panašumus ir skirtumus. Laikui bėgant žinios susikompresavo: jam nereikėjo juostelių, užteko skyrius keisti mintyse.
+\end{comment}
+$15^2+8^2=c^2$
+
+$289=c^2$
+
+$\sqrt{289}=c$
+
+$17=c$
+\end{document}

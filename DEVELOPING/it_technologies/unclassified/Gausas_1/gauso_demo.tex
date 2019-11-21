@@ -1,0 +1,124 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[L7x]{fontenc}
+\usepackage[lithuanian]{babel}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage[top=2cm, bottom=2cm, left=1cm, right=1cm, footskip=1cm, a4paper]{geometry}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{minted}
+\usepackage{bm}
+\usepackage{xcolor}
+\usepackage{tasks}
+
+\begin{document}
+$\left\{\begin{array}{lr}
+1a + 1b + 2c + 1d &=7\\
+3a + 4b + 8c + 5d &=29\\
+1a + 3b + 7c + 8d &=30\\
+2a + 2b + 5c + 6d &=23\\
+\end{array}\right.$
+
+REMIANTIS GAUSO METODU:
+
+\noindent$\left(\begin{array}{rrrr|r}
+\bm{1} & \bm{1} & \bm{2} & \bm{1} & \bm{7}\\
+\textcolor{blue}{3} & 4 & 8 & 5 & 29\\
+\textcolor{blue}{1} & 3 & 7 & 8 & 30\\
+\textcolor{blue}{2} & 2 & 5 & 6 & 23\\
+\end{array}\right)
+\setlength{\unitlength}{1pt}
+\begin{picture} (95, 0)
+\put(0.0, 21.0){\vector(0, -1){12}}
+\put(3.0, 15.0){\tiny{$\times\left(-3\right)$}}
+\put(35.0, 21.0){\vector(0, -1){24}}
+\put(38.0, 15.0){\tiny{$\times\left(-1\right)$}}
+\put(70.0, 21.0){\vector(0, -1){36}}
+\put(73.0, 15.0){\tiny{$\times\left(-2\right)$}}
+\end{picture}=$
+
+\noindent$\left(\begin{array}{rrrr|r}
+1 & 1 & 2 & 1 & 7\\
+\bm{0} & \bm{1} & \bm{2} & \bm{2} & \bm{8}\\
+0 & \textcolor{blue}{2} & 5 & 7 & 23\\
+0 & \textcolor{blue}{0} & 1 & 4 & 9\\
+\end{array}\right)
+\setlength{\unitlength}{1pt}
+\begin{picture} (95, 0)
+\put(0.0, 9.0){\vector(0, -1){12}}
+\put(3.0, 3.0){\tiny{$\times\left(-2\right)$}}
+\put(35.0, 9.0){\vector(0, -1){24}}
+\put(38.0, 3.0){\tiny{$\times\left(0\right)$}}
+\end{picture}=$
+
+\noindent$\left(\begin{array}{rrrr|r}
+1 & 1 & 2 & 1 & 7\\
+0 & 1 & 2 & 2 & 8\\
+\bm{0} & \bm{0} & \bm{1} & \bm{3} & \bm{7}\\
+0 & 0 & \textcolor{blue}{1} & 4 & 9\\
+\end{array}\right)
+\setlength{\unitlength}{1pt}
+\begin{picture} (95, 0)
+\put(0.0, -3.0){\vector(0, -1){12}}
+\put(3.0, -9.0){\tiny{$\times\left(-1\right)$}}
+\end{picture}=$
+
+\noindent$\left(\begin{array}{rrrr|r}
+1 & 1 & 2 & \textcolor{blue}{1} & 7\\
+0 & 1 & 2 & \textcolor{blue}{2} & 8\\
+0 & 0 & 1 & \textcolor{blue}{3} & 7\\
+\bm{0} & \bm{0} & \bm{0} & \bm{1} & \bm{2}\\
+\end{array}\right)
+\setlength{\unitlength}{1pt}
+\begin{picture} (95, 0)
+\put(0.0, -15.0){\vector(0, 1){12}}
+\put(3.0, -9.0){\tiny{$\times\left(-3\right)$}}
+\put(35.0, -15.0){\vector(0, 1){24}}
+\put(38.0, -9.0){\tiny{$\times\left(-2\right)$}}
+\put(70.0, -15.0){\vector(0, 1){36}}
+\put(73.0, -9.0){\tiny{$\times\left(-1\right)$}}
+\end{picture}=$
+
+\noindent$\left(\begin{array}{rrrr|r}
+1 & 1 & \textcolor{blue}{2} & 0 & 5\\
+0 & 1 & \textcolor{blue}{2} & 0 & 4\\
+\bm{0} & \bm{0} & \bm{1} & \bm{0} & \bm{1}\\
+0 & 0 & 0 & 1 & 2\\
+\end{array}\right)
+\setlength{\unitlength}{1pt}
+\begin{picture} (95, 0)
+\put(0.0, -3.0){\vector(0, 1){12}}
+\put(3.0, 3.0){\tiny{$\times\left(-2\right)$}}
+\put(35.0, -3.0){\vector(0, 1){24}}
+\put(38.0, 3.0){\tiny{$\times\left(-2\right)$}}
+\end{picture}=$
+
+\noindent$\left(\begin{array}{rrrr|r}
+1 & \textcolor{blue}{1} & 0 & 0 & 3\\
+\bm{0} & \bm{1} & \bm{0} & \bm{0} & \bm{2}\\
+0 & 0 & 1 & 0 & 1\\
+0 & 0 & 0 & 1 & 2\\
+\end{array}\right)
+\setlength{\unitlength}{1pt}
+\begin{picture} (95, 0)
+\put(0.0, 9.0){\vector(0, 1){12}}
+\put(3.0, 15.0){\tiny{$\times\left(-1\right)$}}
+\end{picture}=$
+
+\noindent$\left(\begin{array}{rrrr|r}
+1 & 0 & 0 & 0 & 1\\
+0 & 1 & 0 & 0 & 2\\
+0 & 0 & 1 & 0 & 1\\
+0 & 0 & 0 & 1 & 2\\
+\end{array}\right)$
+
+SPRENDINIAI:
+
+$\left\{\begin{array}{lr}
+1a + \phantom{0b} + \phantom{0c} + \phantom{0d} &=1\\
+\phantom{0a} + 1b + \phantom{0c} + \phantom{0d} &=2\\
+\phantom{0a} + \phantom{0b} + 1c + \phantom{0d} &=1\\
+\phantom{0a} + \phantom{0b} + \phantom{0c} + 1d &=2\\
+\end{array}\right.$
+\end{document}

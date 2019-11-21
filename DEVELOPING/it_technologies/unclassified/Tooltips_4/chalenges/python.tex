@@ -1,0 +1,76 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[L7x]{fontenc}
+\usepackage[lithuanian]{babel}
+\usepackage{lmodern}
+
+\usepackage{tooltips}
+\usepackage{minted}
+\usepackage{framed}
+\begin{document}
+\section{Labas, gyvybe!}
+Pati pradžia kam nors gimti turi būti neskaidoma dalelė atomas. 
+
+Iš atomų sudarytos molekulės.
+
+Iš molekulių sudaryti genai.
+
+Iš genų sudarytos chromosomos.
+
+Iš chromosomų sudarytos ląstelės.
+
+Iš ląstelių sudarytos skaidulos.
+
+Iš skaidulų sudaryti audiniai.
+
+Iš audinių sudarytos kūno dalys.
+
+Iš kūno dalių sudarytas gyvis.
+
+Iš gyvių sudaryta gyvybė.
+
+Taigi, metas gimdyti:
+
+\mintinline{python}{print('Labas, gyvybe')}
+
+\begin{framed}
+Kiekvieną grandį ir jos elgseną galime suprasti tik žinodami, iš ko jis sudarytas ir ką jis sugeba atlikti. Mūsų paskaitose bus aptariama kiekviena grandis ir tik supratus jos veikimą bei paskirtį galėsime eiti prie kitos grandies.
+\end{framed}
+
+Eksperimentinė užduotis: trumpai aptarsime matematinius žaislus (pagrindinius matematikos objektus, jų tipus, operacijas ir jais paremtas struktūras).
+
+\section{Kintamieji}
+
+Matematikoje galime išskirti pavyzdžiui tokius kintamųjų tipus:
+
+\begin{itemize}
+\item Natūralieji, sveikieji, racionalieji, realieji, kompleksiniai skaičiai
+\item Vektoriai
+\item Sekos
+\item Kintamieji
+\item Reiškiniai: vienanariai, daugianariai, racionalieji reiškiniai, trigonometrinės funkcijos, exponentinės funkcijos, logaritminės funkcijos, kitos simbolinės išraiškos 
+\item Funkcijos: reiškiniai, diskrečiai konstruojamos funkcijos ir pan.
+\item Teiginiai: 
+\end{itemize}
+\section{Ciklai}
+%\begin{minted}[escapeinside=**]{python}
+%\end{minted}
+\begin{framed}
+For sakinys išlaiko tokią struktūrą:
+
+\mintinline{python}{for }\tooltip**{\textbf{ it}}{iteratorius}\mintinline{python}{ in }\tooltip**{\textbf{ iterable}}{iteruojamas objektas}
+
+\mintinline{python}{    do_sth}
+\end{framed}
+
+\begin{enumerate}
+\item \mintinline{python}{for }\tooltip**{\textbf{ it}}{iteratorius}\mintinline{python}{ in }\tooltip**{\textbf{ range(6)}}{iteruojamas objektas \{list\} [0,1,2,3,4,5]}: 
+
+\mintinline{python}{    print (it)}
+
+\item \mintinline{python}{for }\tooltip**{\textbf{ it}}{iteratorius}\mintinline{python}{ in }\tooltip**{\textbf{ 'hello'}}{iteruojamas objektas \{string\} `hello'}: 
+
+\mintinline{python}{    print (it),}
+\end{enumerate}
+
+\end{document}

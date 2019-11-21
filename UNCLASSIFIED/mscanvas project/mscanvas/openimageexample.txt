@@ -1,0 +1,1 @@
+--image go.png im|\im{0.1}\im{0.2}\im{0.3}

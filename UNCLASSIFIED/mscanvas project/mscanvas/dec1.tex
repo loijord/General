@@ -1,0 +1,249 @@
+self.set_buttoncolor(True, 'purple');
+
+self.button_menu_mathinput(formula=r"Tegu $A$ yra įvykis, "+'\n'+r"kai parinktas skaičius yra 5")
+self.coords(self.find_withtag('button1')[0], (215.0, 61.00000000000006, 388.0, 90.00000000000006));
+self.coords(self.find_withtag('button1')[1], (301.0, 75.00000000000006));
+
+self.button_menu_mathinput(formula=r"Tegu $B$ yra įvykis, kai "+'\n'+r"parinktas skaičius yra 4, 5 arba 6")
+self.coords(self.find_withtag('button2')[0], (16.0, 591.0, 225.0, 620.0));
+self.coords(self.find_withtag('button2')[1], (120.0, 605.0));
+
+self.set_buttoncolor(True, 'orange');
+
+
+self.set_buttoncolor(True, 'magenta');
+
+
+
+
+
+self.button_menu_mathinput(formula=r"$P(A)=\frac{1}{5}$")
+self.coords(self.find_withtag('button6')[0], (300.0000000000001, 450.0, 358.0000000000001, 466.0000000000001));
+self.coords(self.find_withtag('button6')[1], (329.0000000000001, 458.0));
+
+self.button_menu_mathinput(formula=r"$P(B)=\frac{3}{5}$")
+self.coords(self.find_withtag('button7')[0], (262.9999999999999, 489.0, 322.0000000000001, 505.0));
+self.coords(self.find_withtag('button7')[1], (292.0, 497.0));
+
+self.create_edge('button3','button6');
+
+self.create_edge('button1','edge1');
+
+self.create_edge('button5','edge2');
+
+self.create_edge('button3','button7');
+
+self.create_edge('button2','edge4');
+
+self.create_edge('button4','edge5');
+
+self.set_buttoncolor(True, 'orange');
+
+self.button_menu_mathinput(formula=r"Žymėjimas $A \subset B$ reiškia, kad įvykis $A$ "+'\n'+r"gai įvykti tik tada, kai įvyksta įvykis $B$")
+self.coords(self.find_withtag('button8')[0], (289.0, 260.0, 536.0, 291.00000000000006));
+self.coords(self.find_withtag('button8')[1], (412.0, 275.0));
+
+self.button_menu_mathinput(formula=r"Aibių teorijoje $A \subset B$ reiškia, "+'\n'+r"kad visi $A$ elementai yra aibėje $B$"+'\n'+r"($A$ yra $B$ poaibis)")
+self.coords(self.find_withtag('button9')[0], (414.9999999999999, 323.0, 626.0, 369.0));
+self.coords(self.find_withtag('button9')[1], (520.0000000000001, 346.0));
+
+
+
+self.button_menu_mathinput(formula=r"--image memory/AinB.png im|\im{0.2}")
+self.coords(self.find_withtag('button10')[0], (300.0, 314.0, 396.0, 394.0));
+self.coords(self.find_withtag('button10')[1], (348.0, 354.0));
+
+self.button_menu_mathinput(formula=r"Įvykiui $X$ priešingas įvykiu $\overline{X}$ yra "+'\n'+r"įvykis, kuris įvyksta tada ir "+'\n'+r"tik tada, kai neįvyksta $A$")
+self.coords(self.find_withtag('button11')[0], (651.0, 68.0, 864.0, 117.00000000000011));
+self.coords(self.find_withtag('button11')[1], (757.0, 92.0));
+
+self.button_menu_mathinput(formula=r"--image memory/complementofX.png im|\im{0.2}")
+self.coords(self.find_withtag('button12')[0], (559.0000000000001, 158.0, 655.0, 235.0));
+self.coords(self.find_withtag('button12')[1], (607.0, 196.0));
+
+
+self.button_menu_mathinput(formula=r"Aibių teorijoje $X\bigcap Y=\{\}$"+'\n'+r"reiškia, kad $X$ ir $Y$ "+'\n'+r"neturi bendrų elementų")
+self.coords(self.find_withtag('button14')[0], (739.0, 463.0, 909.0, 510.0));
+self.coords(self.find_withtag('button14')[1], (824.0, 486.0));
+
+self.set_buttoncolor(True, 'magenta');
+
+self.button_menu_mathinput(formula=r"--image memory/AvsComplementOfB.png im|\im{0.2}")
+self.coords(self.find_withtag('button15')[0], (816.0, 197.0000000000001, 912.0, 277.0));
+self.coords(self.find_withtag('button15')[1], (864.0, 237.0));
+
+self.create_edge('button10','button15');
+
+self.erase_edge(True, edge7);
+
+self.edge_menu_delete('edge7');
+
+self.button_menu_mathinput(formula=r"$A$ ir $\overline{B}$ yra nesutaikomi")
+self.coords(self.find_withtag('button16')[0], (621.0, 423.0, 763.0, 438.0));
+self.coords(self.find_withtag('button16')[1], (692.0, 430.0));
+
+self.create_edge('button2','button16');
+
+self.create_edge('button1','button16');
+
+self.erase_edge(True, edge9);
+
+self.edge_menu_delete('edge9');
+
+self.erase_edge(True, edge8);
+
+self.edge_menu_delete('edge8');
+
+
+self.button_menu_mathinput(formula=r"$A \subset B$")
+self.coords(self.find_withtag('button17')[0], (671.0, 340.0, 711.0, 350.0));
+self.coords(self.find_withtag('button17')[1], (691.0, 345.0));
+
+self.create_edge('button1','button17');
+
+self.create_edge('button2','button17');
+
+self.create_edge('button17','button16');
+
+self.create_edge('button15','edge12');
+
+self.button_menu_mathinput(formula=r"Tikimybė yra palankių "+'\n'+r"įvykių ir visų įmanomų "+'\n'+r"\textbf{vienodai tikėtinų} įvykių santykis")
+self.coords(self.find_withtag('button3')[0], (0.999999999999996, 220.0, 220.0, 266.0));
+self.coords(self.find_withtag('button3')[1], (110.0, 243.0));
+
+self.button_menu_mathinput(formula=r"Palankūs įvykiai: parinktas "+'\n'+r"skaičius 4, 5 arba 6"+'\n'+r"Visi įmanomi įvykiai: "+'\n'+r"parinkta 2,3,4,5 arba 6.")
+self.coords(self.find_withtag('button4')[0], (-1.0000000000000009, 368.0, 172.00000000000003, 431.0000000000001));
+self.coords(self.find_withtag('button4')[1], (85.0, 399.0));
+
+self.button_menu_mathinput(formula=r"Palankūs įvykiai: "+'\n'+r"parinktas skaičius 5"+'\n'+r"Visi įmanomi įvykiai: "+'\n'+r"parinkta 2,3,4,5 arba 6.")
+self.coords(self.find_withtag('button5')[0], (30.0, 131.00000000000003, 178.0, 194.0));
+self.coords(self.find_withtag('button5')[1], (104.00000000000011, 162.0));
+
+self.set_buttoncolor(True, 'red');
+
+
+self.set_buttoncolor(True, 'orange');
+
+self.set_buttoncolor(True, 'red');
+
+self.button_menu_mathinput(formula=r"Priešingiems įvykiams $X$ ir $\overline{X}$"+'\n'+r"galioja $P(X)+P(\overline{X})=1$")
+self.coords(self.find_withtag('button19')[0], (541.0, 549.0, 730.0, 582.0));
+self.coords(self.find_withtag('button19')[1], (635.0, 565.0));
+
+self.set_edgecolor(True, 'red');
+
+self.create_edge('button8','button9');
+
+self.create_edge('button9','button10');
+
+self.create_edge('button8','button10');
+
+self.create_edge('button10','button8');
+
+self.create_edge('button9','button8');
+
+self.create_edge('button10','button9');
+
+self.create_edge('button12','button13');
+
+self.create_edge('button13','button12');
+
+self.erase_edge(True, edge20);
+
+self.edge_menu_delete('edge20');
+
+self.erase_edge(True, edge21);
+
+self.edge_menu_delete('edge21');
+
+self.create_edge('button11','button12');
+
+self.create_edge('button12','button11');
+
+self.set_edgecolor(True, 'lightblue');
+
+self.create_edge('button12','button15');
+
+self.set_edgecolor(True, 'red');
+
+self.create_edge('button13','button14');
+
+self.create_edge('button14','button13');
+
+self.button_menu_mathinput(formula=r"Jei įvykiai $A$ ir $B$ yra "+'\n'+r"nesutaikomi, tai"+'\n'+r"$P(A\bigcup \overline{B})=P(A)+P(\overline{B})$")
+self.coords(self.find_withtag('button20')[0], (742.0, 571.0, 907.0000000000001, 618.0000000000001));
+self.coords(self.find_withtag('button20')[1], (824.0000000000001, 594.0));
+
+self.set_buttoncolor(True, 'magenta');
+
+
+self.button_menu_color('button18');
+
+self.set_edgecolor(True, 'lightblue');
+
+self.create_edge('button16','button18');
+
+
+self.button_menu_mathinput(formula=r"$=P(A)+1-P(B)=$")
+self.coords(self.find_withtag('button21')[0], (385.0, 534.0, 519.0, 548.0000000000001));
+self.coords(self.find_withtag('button21')[1], (452.0, 541.0));
+
+self.create_edge('button21','button18');
+
+self.button_menu_mathinput(formula=r"$P(A\bigcup \overline{B})=P(A)+P(\overline{B})=$")
+self.coords(self.find_withtag('button18')[0], (443.00000000000006, 477.0, 616.0, 493.0));
+self.coords(self.find_withtag('button18')[1], (529.0000000000001, 485.0));
+
+self.erase_edge(True, edge28);
+
+self.edge_menu_delete('edge28');
+
+self.create_edge('button18','button21');
+
+self.create_edge('button20','edge27');
+
+self.create_edge('button19','edge29');
+
+
+self.button_menu_mathinput(formula=r"$=\frac{1}{5}+1-\frac{3}{5}=\frac{3}{5}$")
+self.coords(self.find_withtag('button22')[0], (289.0, 610.0, 388.0, 626.0));
+self.coords(self.find_withtag('button22')[1], (338.00000000000006, 618.0));
+
+self.create_edge('button21','button22');
+
+self.create_edge('button7','edge32');
+
+self.create_edge('button6','edge32');
+
+self.create_edge('button13','edge13');
+
+self.button_menu_mathinput(formula=r"Nesutaikomi įvykiai $X$ ir $Y$ "+'\n'+r"yra tie įvykiai, kurie "+'\n'+r"negali įvykti vienu metu.")
+self.coords(self.find_withtag('button13')[0], (736.0000000000001, 363.0, 910.0000000000001, 409.00000000000006));
+self.coords(self.find_withtag('button13')[1], (823.0000000000001, 386.0));
+
+self.set_edgecolor(True, 'blue');
+
+self.edge_menu_color('edge10');
+
+self.edge_menu_color('edge11');
+
+self.edge_menu_color('edge12');
+
+self.edge_menu_color('edge27');
+
+self.edge_menu_color('edge29');
+
+self.edge_menu_color('edge32');
+
+self.set_edgecolor(True, 'yellow');
+
+self.main_menu_paintoff([(405.0, 225.0), (332.0, 247.0), (277.0, 241.0), (272.0, 282.0), (267.0, 345.0), (306.0, 406.0), (387.0, 433.0), (438.0, 409.0), (532.0, 382.0), (592.0, 376.0), (644.0, 350.0), (651.0, 328.0), (620.0, 311.0), (580.0, 308.0), (559.0, 282.0), (546.0, 257.0), (506.00000000000006, 238.00000000000003), (442.0, 219.00000000000003)]);
+
+self.set_buttoncolor(True, 'yellow');
+
+self.polygon_menu_color('polygon1');
+
+self.main_menu_paintoff([(550.0, 111.0), (608.0, 81.0), (655.0, 54.0), (764.0, 56.0), (875.0, 57.0), (879.0, 126.0), (729.0, 153.0), (668.0, 192.0), (673.0, 243.0), (616.0, 254.0), (567.0, 245.0), (524.0, 211.0), (522.0, 146.0)]);
+
+self.main_menu_paintoff([(828.0, 333.0), (795.0, 344.0), (756.0, 347.0), (724.0, 376.0), (720.0, 400.0), (727.0, 415.0), (757.0, 416.0), (778.0, 429.0), (766.0, 450.0), (728.0, 454.0), (723.0, 483.0), (743.0, 531.0), (784.0, 541.0), (856.0, 542.0), (904.0, 533.0), (914.0, 518.0), (915.0, 489.0), (913.0, 455.0), (905.0, 441.0), (909.0, 424.0), (915.0, 396.0), (915.0, 375.0), (912.0000000000001, 351.0), (872.0, 332.0), (851.0, 328.0)]);
+
