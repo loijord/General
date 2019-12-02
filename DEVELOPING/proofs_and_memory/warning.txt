@@ -1,1 +1,0 @@
-reading mode is inconsistent with developing mode: some parts of file is lost
